@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    background: rgb(2, 0, 36);
+    background: -moz-linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 119, 1) 18%, rgba(0, 212, 255, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 119, 1) 18%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 119, 1) 18%, rgba(0, 212, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00d4ff", GradientType=1);
+    height: 100vh;
+    width: 100%;
+}
+
+.cotainer__main {
+    /* background-image: url('./assets/svg/BOOKWORM 01.svg'); */
+}
