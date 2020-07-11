@@ -4,11 +4,15 @@
 	 width="1400px" height="980px" viewBox="0 0 1400 980" enable-background="new 0 0 1400 980" xml:space="preserve">
 	 <style>
 		#XMLID_232_ {
-			animation: move-redbook 2s ease-in-out infinite alternate;
+			animation: move-to-up 2s ease-in-out infinite alternate;
+		}
+
+		#XMLID_197_{
+			animation: move-to-up 4s ease-in-out infinite alternate;
 		}
 
 
-	 	@keyframes move-redbook{
+	 	@keyframes move-to-up{
 			 to {
 				 transform: translate(0px, -6px)
 			 }
@@ -31,7 +35,7 @@
 			<path id="XMLID_228_" fill="#C74937" d="M485,521.1h-20c-2.7,0-4.8-2.2-4.8-4.8l0,0c0-2.7,2.2-4.8,4.8-4.8h20
 				c2.7,0,4.8,2.2,4.8,4.8l0,0C489.8,519,487.6,521.1,485,521.1z"/>
 			<rect id="XMLID_227_" x="376.5" y="511.5" fill="#BCC0AB" width="68" height="2.7"/>
-			<rect id="XMLID_226_" x="376.5" y="518.5" fill="#BCC0AB" width="68" height="2.7"/>
+			<rect d="XMLID_226_" x="376.5" y="518.5" fill="#BCC0AB" width="68" height="2.7"/>
 		</g>
 		<g id="XMLID_218_">
 			<rect id="XMLID_224_" x="379.7" y="440.4" fill="#E88183" width="119.1" height="21.8"/>
@@ -309,7 +313,7 @@
 			<rect id="XMLID_49_" x="877.7" y="475.1" fill="#BAC2C8" width="68" height="2.7"/>
 		</g>
 	</g>
-	<g id="XMLID_197_">
+	<g id="XMLID_197_"> 	<!-- caneca -->
 		<path id="XMLID_200_" fill="#B35B48" d="M852.9,466.2h-26.7c-8.4,0-15.3,6.8-15.3,15.3V499c0,8.4,6.8,15.3,15.3,15.3h26.7
 			c8.4,0,15.3-6.8,15.3-15.3v-17.6C868.2,473,861.3,466.2,852.9,466.2z M857.8,499.6c0,3.3-2.7,6-6,6h-24.6c-3.3,0-6-2.7-6-6v-18.8
 			c0-3.3,2.7-6,6-6h24.6c3.3,0,6,2.7,6,6V499.6z"/>

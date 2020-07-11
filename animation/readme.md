@@ -31,7 +31,7 @@
         37 or
         ....
     }
-    alternat{
+    alternate{
         normal
         reverse
         alternate
@@ -67,5 +67,26 @@
         }
 
     }
+</p>
+</strong>
+
+<h1> Use animate with SVG </h1>
+<p> Case 1: I prefer to animate SVG's elements INSIDE SVG (element per element) </p>
+<p> Case 2: I prefer to animate entire svg on tag IMAGE </p>
+<p> Case 3: I prefer to use static svg in/on css </p>
+
+
+<h1> Use background attributte </h1>
+
+<p>
+ my use
+
+
+    .any_container_or_div{
+        background: image repeat 
+        position-x-y / scale-image;
+    }
+
+
 </p>
 </strong>
