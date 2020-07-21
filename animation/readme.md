@@ -79,6 +79,7 @@
 <h1> Use background attributte </h1>
 
 <p>
+<strong>
  my use
 
 
@@ -90,3 +91,22 @@
 
 </p>
 </strong>
+
+<h1> Animação JS </h1>
+
+<p>
+<strong>
+Animar quando chegar em um ponto da tela, os elementos entrarem nela.
+<ul>
+    <li> Monitorar a posição Y em que o elemento se encontra</li>
+    <li> Inserir uma condicional que verifica se o valor for maior ou menor que X,aconteça Y com o elemento</li>
+    <li> Manipular dinâmicamente o translate do elemento</li>
+    <li> Corrigir posições com operações aritméticas</li>
+</ul>
+
+    Basicamente você acessará a linha do elemento no HTML.
+
+
+</p>
+</strong>
+
