@@ -3,7 +3,7 @@ $ = document.querySelector.bind(document);
 const button = $('[data-form-button]');
 const list = $('[data-list]');
 
-button.addEventListener('click', criarTarefa);
+button.addEventListener('click', newTask);
 
 function newTask(event) {
     event.preventDefault();
