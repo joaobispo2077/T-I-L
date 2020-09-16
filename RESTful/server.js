@@ -14,11 +14,12 @@ app.get('/clients', (req, res) => {
 });
 
 app.get('/clients/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const { id } = req.params;
   
+//const client = data.filter((client) => client.id == id);
   const client = data.find((client) => client.id == id);
 
-  !client ? res.status(404).json('vish') :
+  !client ? res.status(204).json('Oops!') :
   res.status(200).json(client);
 
 });
