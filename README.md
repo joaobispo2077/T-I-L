@@ -22,11 +22,6 @@
                 <td>undefined</td>
             </tr>
             <tr>
-                <td>Manipular dom API</td>
-                <td><a href="https://github.com/joaobispo2077/T-I-L/tree/master/manipulate-dom">manipulate-dom</a></td>
-                <td>undefined</td>
-            </tr>
-            <tr>
                 <td>Linguagem C</td>
                 <td><a href="https://github.com/joaobispo2077/T-I-L/tree/master/alura-c">alura-c</a></td>
                 <td>undefined</td>
