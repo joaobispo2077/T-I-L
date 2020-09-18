@@ -11,17 +11,12 @@ function createTask(event) {
     const input = $('[data-form-input]');
     const value = input.value;
 
-    const task = document.createElement('li');
-    task.classList.add('task');
+    const { task, content }  = createLine(value);
 
-    const content = document.createElement('p');
-    content.classList.add('content');    
-    content.textContent = value;
     task.appendChild(content);
 
     const buttonDone = ButtonDone("concluir","check-button");
-    const buttonRemove = ButtonRemove("apagar", "delete-button");
-    
+    const buttonRemove = ButtonRemove("apagar", "delete-button");    
 
     task.appendChild(buttonDone);
     task.appendChild(buttonRemove);
@@ -44,8 +39,7 @@ const ButtonDone = (text, style) => {
         risked.appendChild(content);
         task.insertAdjacentElement('afterbegin', risked);
     })
-    return buttonDone;
-    
+    return buttonDone;    
 }
 
 const ButtonRemove = (text, style) => {
@@ -65,3 +59,21 @@ const Button = (text, style) => {
 
     return button;
 }
+
+function createLine(value) {
+    const task = document.createElement('li');
+    task.classList.add('task');
+
+    const content = document.createElement('p');
+    content.classList.add('content');    
+    content.textContent = value;
+
+    return {task, content};
+}
+
+//idea to unrisk task
+// isRisked = task.contains('s');
+// isRisked ? $('s').remove() : riskElement(task);
+// const risked = document.createElement('s');
+// risked.appendChild(content);
+// task.insertAdjacentElement('afterbegin', risked);
