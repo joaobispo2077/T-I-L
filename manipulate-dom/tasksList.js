@@ -24,6 +24,37 @@ function createTask(event) {
 
 }
 
+//logic to create a task
+function createContentTask(value) {
+    const task = document.createElement('li');
+    task.classList.add('task');
+
+    const content = document.createElement('p');
+    content.classList.add('content');
+    content.textContent = value;
+
+    task.appendChild(content);
+    
+    const buttonDone = ButtonDone("concluir","check-button");
+    const buttonRemove = ButtonRemove("apagar", "delete-button");
+
+    task.appendChild(buttonDone);
+    task.appendChild(buttonRemove);
+
+    return task;
+}
+
+//buttons components
+
+const Button = (text, style) => {
+    const button = document.createElement('button');
+
+    button.classList.add(style);
+    button.textContent = text;
+
+    return button;
+}
+
 const ButtonDone = (text, style) => {
     const buttonDone = Button(text, style);
 
@@ -50,38 +81,12 @@ const ButtonRemove = (text, style) => {
     return buttonRemove;
 }
 
-const Button = (text, style) => {
-    const button = document.createElement('button');
-
-    button.classList.add(style);
-    button.textContent = text;
-
-    return button;
-}
+//toggle and logic risk task
 
 function toggleDone(task, content) {
     const isRisked = task.contains(task.querySelector('s'));
 
     isRisked ? unriskedTask(task)  : riskTask(task, content);
-}
-
-function createContentTask(value) {
-    const task = document.createElement('li');
-    task.classList.add('task');
-
-    const content = document.createElement('p');
-    content.classList.add('content');
-    content.textContent = value;
-
-    task.appendChild(content);
-    
-    const buttonDone = ButtonDone("concluir","check-button");
-    const buttonRemove = ButtonRemove("apagar", "delete-button");
-
-    task.appendChild(buttonDone);
-    task.appendChild(buttonRemove);
-
-    return task;
 }
 
 function riskTask(task, content){
