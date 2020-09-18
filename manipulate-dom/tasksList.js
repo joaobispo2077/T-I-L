@@ -41,9 +41,9 @@ const ButtonDone = (text, style) => {
         const content = event.target.previousSibling;
         const task = event.target.parentNode;
 
-        const risked = document.createElement('s');
-        risked.appendChild(content);
-        task.insertAdjacentElement('afterbegin', risked);
+        const isRisked = task.contains(task.querySelector('s'));
+        isRisked ? unriskedTask(task)  : riskTask(task, content);
+        
     })
     return buttonDone;    
 }
@@ -77,9 +77,15 @@ function createContentLine(value) {
     return {task, content};
 }
 
-//idea to unrisk task
-// isRisked = task.contains('s');
-// isRisked ? $('s').remove() : riskElement(task);
-// const risked = document.createElement('s');
-// risked.appendChild(content);
-// task.insertAdjacentElement('afterbegin', risked);
+function riskTask(task, content){
+    const risked = document.createElement('s');
+    risked.appendChild(content);
+    task.insertAdjacentElement('afterbegin', risked);    
+}
+
+function unriskedTask(task){
+    const risk = task.querySelector("s");
+    const content = task.querySelector("p");
+    risk.remove();
+    task.insertAdjacentElement('afterbegin', content); 
+}
