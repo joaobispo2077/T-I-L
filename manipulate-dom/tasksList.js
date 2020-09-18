@@ -11,19 +11,25 @@ function createTask(event) {
     const input = $('[data-form-input]');
     const value = input.value;
 
-    const { task, content }  = createLine(value);
-
-    task.appendChild(content);
-
-    const buttonDone = ButtonDone("concluir","check-button");
-    const buttonRemove = ButtonRemove("apagar", "delete-button");    
-
-    task.appendChild(buttonDone);
-    task.appendChild(buttonRemove);
+    if (input.value.length >= 4) {
+        
+        const { task, content }  = createContentLine(value);
     
-    list.appendChild(task);
+        task.appendChild(content);
+    
+        const buttonDone = ButtonDone("concluir","check-button");
+        const buttonRemove = ButtonRemove("apagar", "delete-button");    
+    
+        task.appendChild(buttonDone);
+        task.appendChild(buttonRemove);
+        
+        list.appendChild(task);
+    
+        input.value = '';
+    } else {
+        alert("Você precisa digitar mais que 4 caracteres");
+    }
 
-    input.value = '';
 }
 
 const ButtonDone = (text, style) => {
@@ -60,7 +66,7 @@ const Button = (text, style) => {
     return button;
 }
 
-function createLine(value) {
+function createContentLine(value) {
     const task = document.createElement('li');
     task.classList.add('task');
 
