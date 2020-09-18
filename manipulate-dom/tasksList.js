@@ -11,18 +11,10 @@ function createTask(event) {
     const input = $('[data-form-input]');
     const value = input.value;
 
-    if (input.value.length >= 4) {
+    if (value.length >= 4) {
         
-        const { task, content }  = createContentLine(value);
-    
-        task.appendChild(content);
-    
-        const buttonDone = ButtonDone("concluir","check-button");
-        const buttonRemove = ButtonRemove("apagar", "delete-button");    
-    
-        task.appendChild(buttonDone);
-        task.appendChild(buttonRemove);
-        
+        const task = createContentTask(value);
+
         list.appendChild(task);
     
         input.value = '';
@@ -42,6 +34,7 @@ const ButtonDone = (text, style) => {
         const task = event.target.parentNode;
 
         const isRisked = task.contains(task.querySelector('s'));
+
         isRisked ? unriskedTask(task)  : riskTask(task, content);
         
     })
@@ -50,8 +43,10 @@ const ButtonDone = (text, style) => {
 
 const ButtonRemove = (text, style) => {
     const buttonRemove = Button(text, style);
+
     buttonRemove.addEventListener('click', (event) => {
         const deletedItem = event.target.parentElement;
+
         deletedItem.remove();
     });
 
@@ -60,27 +55,39 @@ const ButtonRemove = (text, style) => {
 
 const Button = (text, style) => {
     const button = document.createElement('button');
+
     button.classList.add(style);
     button.textContent = text;
 
     return button;
 }
 
-function createContentLine(value) {
+function createContentTask(value) {
     const task = document.createElement('li');
     task.classList.add('task');
 
     const content = document.createElement('p');
-    content.classList.add('content');    
+    content.classList.add('content');
+
     content.textContent = value;
 
-    return {task, content};
+    task.appendChild(content);
+    
+    const buttonDone = ButtonDone("concluir","check-button");
+    const buttonRemove = ButtonRemove("apagar", "delete-button");
+
+    task.appendChild(buttonDone);
+    task.appendChild(buttonRemove);
+
+    return task;
 }
 
 function riskTask(task, content){
     const risked = document.createElement('s');
     const buttonDone = task.querySelector("button");
+
     buttonDone.textContent = "desconcluir";
+
     risked.appendChild(content);
     task.insertAdjacentElement('afterbegin', risked);    
 }
@@ -89,7 +96,9 @@ function unriskedTask(task){
     const risk = task.querySelector("s");
     const content = task.querySelector("p");
     const buttonDone = task.querySelector("button");
+
     buttonDone.textContent = "concluir";
+
     risk.remove();
     task.insertAdjacentElement('afterbegin', content); 
 }
