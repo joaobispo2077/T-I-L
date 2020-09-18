@@ -19,18 +19,13 @@ function createTask(event) {
     content.textContent = value;
     task.appendChild(content);
 
-
-
-    // const buttonDelete = document.createElement('button');
-    // buttonDelete.classList.add('form-button');
-    // buttonDelete.textContent = 'Concluir';
-    // task.appendChild(buttonDelete);
-
     const buttonDone = ButtonDone("concluir","check-button");
-    // not bro const buttonDelete = ButtonDone("deletar","delete-button");
+    const buttonRemove = ButtonRemove("apagar", "delete-button");
+    
 
     task.appendChild(buttonDone);
-    task.appendChild(buttonDelete);
+    task.appendChild(buttonRemove);
+    
     list.appendChild(task);
 
     input.value = '';
@@ -53,4 +48,16 @@ const ButtonDone = (text, style) => {
 
     return buttonDone;
     
+}
+const ButtonRemove = (text, style) => {
+    const buttonRemove = document.createElement('button');
+    buttonRemove.classList.add(style);
+    buttonRemove.textContent = text;
+
+    buttonRemove.addEventListener('click', (event) => {
+        const deletedItem = event.target.parentElement;
+        deletedItem.remove();
+    });
+
+    return buttonRemove;
 }
