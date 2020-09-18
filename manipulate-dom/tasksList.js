@@ -32,12 +32,11 @@ function createTask(event) {
 }
 
 const ButtonDone = (text, style) => {
-    const buttonDone = document.createElement('button');    
-    buttonDone.classList.add(style);
-    buttonDone.textContent = text;
+    const buttonDone = Button(text, style);
 
     buttonDone.addEventListener('click', (event) => {
         event.preventDefault();
+        
         const content = event.target.previousSibling;
         const task = event.target.parentNode;
 
@@ -45,19 +44,24 @@ const ButtonDone = (text, style) => {
         risked.appendChild(content);
         task.insertAdjacentElement('afterbegin', risked);
     })
-
     return buttonDone;
     
 }
-const ButtonRemove = (text, style) => {
-    const buttonRemove = document.createElement('button');
-    buttonRemove.classList.add(style);
-    buttonRemove.textContent = text;
 
+const ButtonRemove = (text, style) => {
+    const buttonRemove = Button(text, style);
     buttonRemove.addEventListener('click', (event) => {
         const deletedItem = event.target.parentElement;
         deletedItem.remove();
     });
 
     return buttonRemove;
+}
+
+const Button = (text, style) => {
+    const button = document.createElement('button');
+    button.classList.add(style);
+    button.textContent = text;
+
+    return button;
 }
