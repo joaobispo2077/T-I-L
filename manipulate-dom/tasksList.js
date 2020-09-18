@@ -30,13 +30,10 @@ const ButtonDone = (text, style) => {
     buttonDone.addEventListener('click', (event) => {
         event.preventDefault();
         
-        const content = event.target.previousSibling;
         const task = event.target.parentNode;
+        const content = event.target.previousSibling;
 
-        const isRisked = task.contains(task.querySelector('s'));
-
-        isRisked ? unriskedTask(task)  : riskTask(task, content);
-        
+       toggleDone(task, content);
     })
     return buttonDone;    
 }
@@ -62,13 +59,18 @@ const Button = (text, style) => {
     return button;
 }
 
+function toggleDone(task, content) {
+    const isRisked = task.contains(task.querySelector('s'));
+
+    isRisked ? unriskedTask(task)  : riskTask(task, content);
+}
+
 function createContentTask(value) {
     const task = document.createElement('li');
     task.classList.add('task');
 
     const content = document.createElement('p');
     content.classList.add('content');
-
     content.textContent = value;
 
     task.appendChild(content);
