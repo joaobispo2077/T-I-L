@@ -79,6 +79,8 @@ function createContentLine(value) {
 
 function riskTask(task, content){
     const risked = document.createElement('s');
+    const buttonDone = task.querySelector("button");
+    buttonDone.textContent = "desconcluir";
     risked.appendChild(content);
     task.insertAdjacentElement('afterbegin', risked);    
 }
@@ -86,6 +88,8 @@ function riskTask(task, content){
 function unriskedTask(task){
     const risk = task.querySelector("s");
     const content = task.querySelector("p");
+    const buttonDone = task.querySelector("button");
+    buttonDone.textContent = "concluir";
     risk.remove();
     task.insertAdjacentElement('afterbegin', content); 
 }
