@@ -9,7 +9,9 @@ function createTask(event) {
     event.preventDefault();
 
     const input = $('[data-form-input]');
-    const value = input.value;
+
+    const pattern = /<.+?>/g;
+    const value = input.value.replaceAll(pattern, " ");
 
     if (value.length >= 4) {
         
@@ -19,7 +21,7 @@ function createTask(event) {
     
         input.value = '';
     } else {
-        alert("Você precisa digitar mais que 4 caracteres");
+        alert("Você precisa digitar mais que 3 caracteres");
     }
 
 }
@@ -29,11 +31,9 @@ function createContentTask(value) {
     const task = document.createElement('li');
     task.classList.add('task');
 
-    const content = document.createElement('p');
-    content.classList.add('content');
-    content.textContent = value;
+    const content = `<p class="content">${value}</p>`;
 
-    task.appendChild(content);
+    task.innerHTML = content;
     
     const buttonDone = ButtonDone("concluir","check-button");
     const buttonRemove = ButtonRemove("apagar", "delete-button");
@@ -58,27 +58,31 @@ const Button = (text, style) => {
 const ButtonDone = (text, style) => {
     const buttonDone = Button(text, style);
 
-    buttonDone.addEventListener('click', (event) => {
-        event.preventDefault();
+    buttonDone.addEventListener('click', completeTask);
+    return buttonDone;    
+}
+
+const completeTask = (event) => {
+    event.preventDefault();
         
         const task = event.target.parentNode;
         const content = event.target.previousSibling;
 
        toggleDone(task, content);
-    })
-    return buttonDone;    
 }
 
 const ButtonRemove = (text, style) => {
     const buttonRemove = Button(text, style);
 
-    buttonRemove.addEventListener('click', (event) => {
-        const deletedItem = event.target.parentElement;
-
-        deletedItem.remove();
-    });
+    buttonRemove.addEventListener('click', deleteTask);
 
     return buttonRemove;
+}
+
+const deleteTask = (event) => {
+    const deletedItem = event.target.parentElement;
+
+    deletedItem.remove();
 }
 
 //toggle and logic risk task
