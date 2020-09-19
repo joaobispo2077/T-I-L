@@ -1,115 +1,94 @@
-$ = document.querySelector.bind(document);
+( () => {
 
-const button = $('[data-form-button]');
-const list = $('[data-list]');
-
-button.addEventListener('click', createTask);
-
-function createTask(event) {
-    event.preventDefault();
-
-    const input = $('[data-form-input]');
-
-    const pattern = /<.+?>/g;
-    const value = input.value.replaceAll(pattern, " ");
-
-    if (value.length >= 4) {
-        
-        const task = createContentTask(value);
-
-        list.appendChild(task);
+    $ = document.querySelector.bind(document);
     
-        input.value = '';
-    } else {
-        alert("Você precisa digitar mais que 3 caracteres");
+    const button = $('[data-form-button]');
+    const list = $('[data-list]');
+        
+    button.addEventListener('click', createTask);
+
+    function createTask(event) {
+        event.preventDefault();
+        
+        const input = $('[data-form-input]');
+
+        const pattern = /<.+?>/g;
+        const value = input.value.replaceAll(pattern, " ");
+        
+        if (value.length >= 4) {
+            
+            const task = createContentTask(value);
+
+            list.appendChild(task);
+            
+            input.value = '';
+        } else {
+            alert("Você precisa digitar mais que 3 caracteres");
+        }
+
     }
 
-}
+    //logic to create a task
+    function createContentTask(value) {
+        const task = document.createElement('li');
+        task.classList.add('task');
 
-//logic to create a task
-function createContentTask(value) {
-    const task = document.createElement('li');
-    task.classList.add('task');
+        const content = `<p class="content">${value}</p>`;
 
-    const content = `<p class="content">${value}</p>`;
-
-    task.innerHTML = content;
-    
-    const buttonDone = ButtonDone("concluir","check-button");
-    const buttonRemove = ButtonRemove("apagar", "delete-button");
-
-    task.appendChild(buttonDone);
-    task.appendChild(buttonRemove);
-
-    return task;
-}
-
-//buttons components
-
-const Button = (text, style) => {
-    const button = document.createElement('button');
-
-    button.classList.add(style);
-    button.textContent = text;
-
-    return button;
-}
-
-const ButtonDone = (text, style) => {
-    const buttonDone = Button(text, style);
-
-    buttonDone.addEventListener('click', completeTask);
-    return buttonDone;    
-}
-
-const completeTask = (event) => {
-    event.preventDefault();
+        task.innerHTML = content;
         
-        const task = event.target.parentNode;
-        const content = event.target.previousSibling;
+        const buttonDone = ButtonDone("concluir","check-button");
+        const buttonRemove = ButtonRemove("apagar", "delete-button");
 
-       toggleDone(task, content);
-}
+        task.appendChild(buttonDone);
+        task.appendChild(buttonRemove);
 
-const ButtonRemove = (text, style) => {
-    const buttonRemove = Button(text, style);
+        return task;
+    }
 
-    buttonRemove.addEventListener('click', deleteTask);
+    //buttons components
 
-    return buttonRemove;
-}
+    const Button = (text, style) => {
+        const button = document.createElement('button');
+        
+        button.classList.add(style);
+        button.textContent = text;
+        
+        return button;
+    }
 
-const deleteTask = (event) => {
-    const deletedItem = event.target.parentElement;
+    const ButtonDone = (text, style) => {
+        const buttonDone = Button(text, style);
+        
+        buttonDone.addEventListener('click', completeTask);
+        return buttonDone;    
+    }
 
-    deletedItem.remove();
-}
+    const completeTask = (event) => {
+        event.preventDefault();        
+        const button = event.target;
+        const task = button.parentNode;
 
-//toggle and logic risk task
+        task.classList.contains('done') ? 
+        button.textContent = 'concluir' :
+        button.textContent = 'desconcluir';
 
-function toggleDone(task, content) {
-    const isRisked = task.contains(task.querySelector('s'));
+        task.classList.toggle('done');
+        
+        }
+        
+    const ButtonRemove = (text, style) => {
+        const buttonRemove = Button(text, style);
+        
+        buttonRemove.addEventListener('click', deleteTask);
+        
+        return buttonRemove;
+    }
 
-    isRisked ? unriskedTask(task)  : riskTask(task, content);
-}
+    const deleteTask = (event) => {
+        const deletedItem = event.target.parentElement;
+        
+        deletedItem.remove();
+    }
 
-function riskTask(task, content){
-    const risked = document.createElement('s');
-    const buttonDone = task.querySelector("button");
-
-    buttonDone.textContent = "desconcluir";
-
-    risked.appendChild(content);
-    task.insertAdjacentElement('afterbegin', risked);    
-}
-
-function unriskedTask(task){
-    const risk = task.querySelector("s");
-    const content = task.querySelector("p");
-    const buttonDone = task.querySelector("button");
-
-    buttonDone.textContent = "concluir";
-
-    risk.remove();
-    task.insertAdjacentElement('afterbegin', content); 
-}
+})()

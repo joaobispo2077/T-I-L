@@ -33,3 +33,33 @@ function criarTarefa(event) {
 
   input.value = '';
 }
+
+
+//toggle and logic risk task
+
+function toggleDone(task, content) {
+  const isRisked = task.contains(task.querySelector('s'));
+  
+  isRisked ? unriskedTask(task) : riskTask(task, content);
+}
+
+function riskTask(task, content){
+  const risked = document.createElement('s');
+  const buttonDone = task.querySelector("button");
+  
+  buttonDone.textContent = "desconcluir";
+  
+  risked.appendChild(content);
+  task.insertAdjacentElement('afterbegin', risked);    
+}
+
+function unriskedTask(task){
+  const risk = task.querySelector("s");
+  const content = task.querySelector("p");
+  const buttonDone = task.querySelector("button");
+  
+  buttonDone.textContent = "concluir";
+  
+  risk.remove();
+  task.insertAdjacentElement('afterbegin', content); 
+}
