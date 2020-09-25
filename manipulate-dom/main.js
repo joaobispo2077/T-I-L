@@ -37,8 +37,8 @@ const createContentTask = (value) => {
 
     task.innerHTML = content;
 
-    const buttonDone = ButtonDone("concluir", "check-button");
-    const buttonRemove = ButtonRemove("apagar", "delete-button");
+    const buttonDone = ButtonDone("Concluir", "check-button");
+    const buttonRemove = ButtonRemove("Apagar", "delete-button");
 
     task.appendChild(buttonDone);
     task.appendChild(buttonRemove);

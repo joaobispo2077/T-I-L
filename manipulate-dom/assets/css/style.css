@@ -19,10 +19,10 @@ body {
 
 .todo-list {
     background-color: #051014;
-    font-family: "Overpass Mono", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", "Overpass Mono", Arial, Helvetica, sans-serif;
     padding: 1rem;
-    min-width: 400px;
-    max-width: 600px;
+    min-width: 500px;
+    max-width: 500px;
     min-height: 300px;
     height: auto;
 }
@@ -45,13 +45,16 @@ body {
     border-radius: 0;
     padding: 0.75rem;
     font-size: 0.75rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 700;
 }
 
 .form-input {
     outline: none;
     background-color: #F6F1D1;
+    color: #333;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 500;
     border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -60,12 +63,17 @@ body {
     background: #F6F1D1;
     text-transform: uppercase;
     cursor: pointer;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #333;
     margin-left: 0.25rem;
+    border-radius: 2px;
 }
 
 .form-button:hover {
     color: #858AE3;
     background: rgba(246, 241, 209, 0.1);
+    transition: .75s all;
 }
 
 .list {
@@ -76,9 +84,11 @@ body {
 
 .task {
     background-color: rgba(255, 255, 255, 0.1);
-    color: #20FC8F;
+    color: #858AE3;
+    /*#20FC8F;*/
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 0.5rem;
     padding: 1rem 3rem;
 }
@@ -91,10 +101,25 @@ body {
     outline: none;
     border-radius: 2px;
     cursor: pointer;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    height: 42px;
+    width: 144px;
+    margin: 0 1rem 0 1rem;
+}
+
+.check-button:hover {
+    background-color: #20FC8F;
+    transition: 1s background-color;
+}
+
+.delete-button:hover {
+    background-color: #ec534d;
+    transition: 1s background-color;
 }
 
 .task.done .check-button {
-    background-color: #858AE3;
+    background-color: rgba(246, 241, 209, 0.1);
     color: #F6F1D1;
 }
 
