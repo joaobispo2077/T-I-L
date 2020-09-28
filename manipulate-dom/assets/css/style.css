@@ -94,7 +94,8 @@ body {
 }
 
 .check-button,
-.delete-button {
+.delete-button,
+.button-xxs {
     background-color: #F6F1D1;
     border: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -106,6 +107,48 @@ body {
     height: 42px;
     width: 144px;
     margin: 0 1rem 0 1rem;
+}
+
+.button-xxs {
+    background-color: transparent;
+    border: solid #858AE3;
+    color: #858AE3;
+    height: 21px;
+    width: 72px;
+    margin: 0
+}
+
+.button-xxs-purple {
+    border: solid #858AE3;
+    color: #858AE3;
+    transition: 1s all;
+}
+
+.button-xxs-green {
+    color: #20FC8F;
+    border: solid #20FC8F;
+    transition: 1s all;
+}
+
+.button-xxs-green:hover {
+    color: #24cf7a;
+    border: solid #24cf7a;
+    transition: 1s all;
+}
+
+h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    transition: 1s all;
+}
+
+.title-xxs {
+    color: #20FC8F;
+    transition: 1s all;
 }
 
 .check-button:hover {
