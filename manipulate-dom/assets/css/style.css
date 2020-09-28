@@ -71,8 +71,7 @@ body {
 }
 
 .form-button:hover {
-    color: #858AE3;
-    background: rgba(246, 241, 209, 0.1);
+    background: rgba(246, 241, 209, 0.801);
     transition: .75s all;
 }
 
@@ -104,8 +103,8 @@ body {
     cursor: pointer;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-weight: 500;
-    height: 42px;
-    width: 144px;
+    height: 32px;
+    width: 128px;
     margin: 0 1rem 0 1rem;
 }
 
@@ -113,8 +112,8 @@ body {
     background-color: transparent;
     border: solid #858AE3;
     color: #858AE3;
-    height: 21px;
-    width: 72px;
+    height: 32px;
+    width: 144px;
     margin: 0
 }
 
@@ -124,16 +123,22 @@ body {
     transition: 1s all;
 }
 
+.button-xxs-purple:hover {
+    border: solid #6468c2;
+    color: #6468c2;
+    transition: 1s all;
+}
+
 .button-xxs-green {
     color: #20FC8F;
     border: solid #20FC8F;
-    transition: 1s all;
+    transition: .5s all;
 }
 
 .button-xxs-green:hover {
     color: #24cf7a;
     border: solid #24cf7a;
-    transition: 1s all;
+    transition: .5s all;
 }
 
 h1 {

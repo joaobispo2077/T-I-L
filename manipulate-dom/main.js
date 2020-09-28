@@ -73,15 +73,17 @@ xxsButton.addEventListener('click', toggleXXS);
 
 function disabledXXS() {
     isXxsEnabled = false;
+    xxsButton.textContent = 'Ativar modo XXS';
     title.classList.remove('title-xxs')
 
     xxsButton.classList.remove('button-xxs-green');
     xxsButton.classList.add('button-xxs-purple');
-    alert("Você desativou o modo XXS, agora os seus XXS serão sanitizados e não vão funcionar mais");
+    alert("Você desativou o modo XXS, agora os seus XXS serão sanitizados e não vão funcionar mais. \n \n \n \n \n(Dependendo do contexto não é bacana a utilização de alert por ser 'blockante', mas isso é um assunto para outro momento ;)");
 }
 
 function activatedXXS() {
     isXxsEnabled = true;
+    xxsButton.textContent = 'Desativar modo XXS';
     title.classList.add('title-xxs')
 
     xxsButton.classList.add('button-xxs-green');
