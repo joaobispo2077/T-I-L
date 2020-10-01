@@ -1,5 +1,6 @@
 import ButtonDone from './components/ButtonDone.js';
 import ButtonRemove from './components/ButtonRemove.js';
+import toggleXXS from './components/Toggle.js';
 
 var isXxsEnabled = false;
 const button = document.querySelector('[data-form-button]');
@@ -8,6 +9,10 @@ const xxsButton = document.querySelector('[data-form-xxs]');
 const title = document.querySelector('.title');
 
 button.addEventListener('click', createTask);
+
+xxsButton.addEventListener('click', () => {
+    isXxsEnabled = toggleXXS(isXxsEnabled, xxsButton, title);
+});
 
 function createTask(event) {
     event.preventDefault();
@@ -33,7 +38,10 @@ function createTask(event) {
 
         input.value = '';
     } else {
-        alert("Você precisa digitar mais que 3 caracteres e não pode ser um XXS");
+        isXxsEnabled ?
+            alert("Você precisa digitar mais que 3 caracteres") :
+            alert("Você precisa digitar mais que 3 caracteres e não pode ser um XXS");
+
     }
 
 }
@@ -55,38 +63,4 @@ const createContentTask = (value) => {
     task.appendChild(buttonRemove);
 
     return task;
-}
-
-
-
-const toggleXXS = () => {
-
-    isXxsEnabled ?
-        disabledXXS() :
-        activatedXXS();
-
-
-
-}
-
-xxsButton.addEventListener('click', toggleXXS);
-
-function disabledXXS() {
-    isXxsEnabled = false;
-    xxsButton.textContent = 'Ativar modo XXS';
-    title.classList.remove('title-xxs')
-
-    xxsButton.classList.remove('button-xxs-green');
-    xxsButton.classList.add('button-xxs-purple');
-    alert("Você desativou o modo XXS, agora os seus XXS serão sanitizados e não vão funcionar mais. \n \n \n \n \n(Dependendo do contexto não é bacana a utilização de alert por ser 'blockante', mas isso é um assunto para outro momento ;)");
-}
-
-function activatedXXS() {
-    isXxsEnabled = true;
-    xxsButton.textContent = 'Desativar modo XXS';
-    title.classList.add('title-xxs')
-
-    xxsButton.classList.add('button-xxs-green');
-
-    alert("Você ativou o modo XXS, insira algum XXS no input para testar os seus XXS!");
 }
