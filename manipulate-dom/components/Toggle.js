@@ -22,11 +22,18 @@ function disabledXXS(isXxsEnabled, xxsButton, title) {
 function activatedXXS(isXxsEnabled, xxsButton, title) {
     isXxsEnabled = true;
     xxsButton.textContent = 'Desativar modo XXS';
-    title.classList.add('title-xxs')
+    title.classList.add('title-xxs');
 
     xxsButton.classList.add('button-xxs-green');
 
     alert("Você ativou o modo XXS, insira algum XXS no input para testar os seus XXS!");
+
+    const animation = document.querySelector('span');
+    animation.classList.add('xxs-image');
+    setTimeout(() => {
+        animation.classList.remove('xxs-image');
+
+    }, 2001);
     return isXxsEnabled;
 }
 

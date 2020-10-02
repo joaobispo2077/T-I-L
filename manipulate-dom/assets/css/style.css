@@ -210,5 +210,19 @@ h1 {
     }
 }
 
+.xxs-image {
+    background: url('../image/xxs_invader.png') no-repeat fixed 50% 50%;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    animation: sumir 2s ease-in forwards normal;
+}
+
+@keyframes sumir {
+    to {
+        opacity: 0;
+    }
+}
+
 
 /*# sourceMappingURL=style.css.map */
