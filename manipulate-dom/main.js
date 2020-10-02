@@ -62,5 +62,6 @@ const createContentTask = (value) => {
     task.appendChild(buttonDone);
     task.appendChild(buttonRemove);
 
+
     return task;
 }
