@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 #define INFINITY 1
 
 int main() {
@@ -10,9 +11,14 @@ int main() {
     printf("|Bem-vindo ao jogo de advinhacao!|\n");
     printf("+================================+\n");
 
-    int secretNumber = 42;
+    int seconds = time(0);
+    srand(seconds);
+
+    int randomNumber = rand();
+    int secretNumber = (randomNumber % 100);
     int luckyNumber;
     int attempts = 1;
+    double points = 1000;
 
     printf("Preparado para tentar a sua sorte?!\n");
 
@@ -47,9 +53,13 @@ int main() {
             printf(".\nDessa vez foi QUASE, mas ainda sim, o número que você digitou é menor que o número da sorte\n");
         }            
         attempts++;
+
+        double lostPoints = (abs(luckyNumber - secretNumber) / (double)2);
+        points = points - lostPoints;
     }
 
     printf("\nFim de jogo!\n");
     printf("\nO seu número de tentativas foi: %d!\n", attempts);
+    printf("\nPontuação: %.1f!\n", points);
     
 }
