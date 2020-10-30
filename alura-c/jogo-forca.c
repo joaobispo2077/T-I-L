@@ -7,21 +7,37 @@ int main() {
 	sprintf(secretWord, "BATATA");
 
 	int hasWon = 0;
-	int hasLose = 1;
+	int hasLose = 0;
+	
+	char luckyWords[26];
+	int attempts = 0;
 
 	do{
-
-		char luckyWord;
-		printf("Digite uma letra: ");
-		scanf("%c", &luckyWord);
-
-		for (int i = 0; i < strlen(secretWord); i++){
-			if (secretWord[i] == luckyWord){
-				printf("Acertou! Essa letra está na posição %i\n", i);
-			}
-			
-		}
 		
+	for (int i = 0; i < strlen(secretWord); i++){
+		int hasFind = 0;
+
+		for (int j = 0; j < attempts; j++) {
+			if (luckyWords[j] == secretWord[i]) {
+				hasFind = 1;
+				break;
+			}
+		}
+
+			if(hasFind) {
+				printf(" %c ", secretWord[i]);
+			} else {
+				printf(" _ ");
+			}
+		
+	}	
+	
+	char luckyWord;
+	printf("\n\nDigite uma letra: ");
+	scanf(" %c", &luckyWord);
+
+	luckyWords[attempts] = luckyWord;
+	attempts++;
 
 	} while (!hasWon && !hasLose);
 	
