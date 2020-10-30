@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 
+void showWelcome() {
+	printf("+------------------------------+\n");
+	printf("|Bem-vindo ao jogo da forca =D!|\n");
+	printf("+------------------------------+\n\n");
+}
+
+void tryGuessing(char luckyWords[26], int attempts) {
+	char luckyWord;
+	printf("\n\nDigite uma letra: ");
+	scanf(" %c", &luckyWord);
+
+	luckyWords[attempts] = luckyWord;
+}
+
 int main() {
 	char secretWord[20];
 
@@ -11,6 +25,8 @@ int main() {
 	
 	char luckyWords[26];
 	int attempts = 0;
+
+	showWelcome();
 
 	do{
 		
@@ -32,11 +48,7 @@ int main() {
 		
 	}	
 	
-	char luckyWord;
-	printf("\n\nDigite uma letra: ");
-	scanf(" %c", &luckyWord);
-
-	luckyWords[attempts] = luckyWord;
+	tryGuessing(luckyWords, attempts);
 	attempts++;
 
 	} while (!hasWon && !hasLose);
