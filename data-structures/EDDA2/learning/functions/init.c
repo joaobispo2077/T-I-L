@@ -7,6 +7,7 @@ int main(void)
 
   float area = calculateSquareArea(2);
   showSquareArea(area);
+
   return 0;
 }
 
