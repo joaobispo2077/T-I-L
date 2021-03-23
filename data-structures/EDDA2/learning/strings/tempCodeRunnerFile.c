@@ -1,1 +1,1 @@
-phrase2
+string2 != '\0'
