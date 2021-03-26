@@ -42,3 +42,14 @@ int main() {
 
   fclose(f);
 }
+
+
+
+void salvaDados (ESTRUTURA *l){
+    FILE* f;
+  f = fopen("RESPOSTA.TXT", "w");
+
+  fprintf(f, " %d", result.numberDistinct);
+
+  fclose(f);
+}
