@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
+#include <conio.h>
+#include <string.h>
 
 void showWelcome()
 {
@@ -16,10 +19,12 @@ int main()
   showWelcome();
   int age;
   int birthyear;
-  printf("\n\nEm que ano voce nasceu? ");
+  printf("\n\nEm que ano você nasceu? ");
   scanf("%d", &birthyear);
   age = 2021 - birthyear;
   printf("\nA sua idade eh %d\n", age);
   printf("hello");
+
+  system("pause");
   return 0;
 }
