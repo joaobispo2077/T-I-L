@@ -30,3 +30,25 @@ docker container rm $(docker container ls -a -q)
 
 -P
 - Pega todas portas do container e publica o host em portas aleatórias.
+
+
+## class 2
+### logs
+
+docker container logs [name | id]
+- mostra as últimas saídas de log da imagem.
+
+docker container logs -f [name | id]
+- acompanha a saída de logs.
+
+docker container top [name | id]
+- mostra os processos rodando do container.
+
+docker container stats
+- exibe em tempo real o status do container (uso de rede, disco, mememória, cpu e etc).
+
+docker container stats <name>
+- mostra a utilizaçao de um container específico.
+
+docker container inspect [name | id]
+- mostra todas configurações de um container.
