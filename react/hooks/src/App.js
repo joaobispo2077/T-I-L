@@ -1,12 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 // import { Component } from 'react';
+
+import Proptypes from 'prop-types';
+
+const Button = React.memo(({ incrementButton }) => {
+  console.log('Render button');
+
+  return <button onClick={() => incrementButton(10)}>+</button>;
+});
+
+Button.displayName = 'Button';
+
+Button.propTypes = {
+  incrementButton: Proptypes.func,
+};
 
 const handleClicked = () => {
   console.log('h1 clicado');
 };
+
 function App() {
   const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
@@ -15,9 +29,9 @@ function App() {
     setReverse(!reverse);
   };
 
-  const handleIncrementCounter = () => {
-    setCounter(counter + 1);
-  };
+  const handleIncrementCounter = useCallback((number) => {
+    setCounter((counter) => counter + number);
+  }, []);
 
   useEffect(() => {
     console.log(`counter atualizou para: ${counter} [componentDidUpdate]`);
@@ -35,6 +49,7 @@ function App() {
     };
   }, []);
 
+  console.log('Render app');
   return (
     <div className="App">
       <header className="App-header">
@@ -45,7 +60,7 @@ function App() {
         />
 
         <h1>Contador: {counter}</h1>
-        <button onClick={handleIncrementCounter}>Increment counter</button>
+        <Button incrementButton={handleIncrementCounter} />
         <p onClick={handleChangeRotation}>
           {reverse
             ? 'Rodando no sentido Horário'
