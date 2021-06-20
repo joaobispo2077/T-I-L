@@ -1,15 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 // import { Component } from 'react';
 import Proptypes from 'prop-types';
 
-const Post = ({ post }) => {
+const Post = ({ post, onClick }) => {
   console.log('Render Post');
 
   return (
     <div>
-      <h1>{post.title}</h1>
+      <h1 onClick={(event) => onClick(event.target.innerHTML)}>{post.title}</h1>
       <p>{post.body}</p>
     </div>
   );
@@ -21,6 +27,7 @@ Post.propTypes = {
     title: Proptypes.string,
     body: Proptypes.string,
   }),
+  onClick: Proptypes.func,
 };
 
 const Button = ({ incrementButton }) => {
@@ -44,6 +51,8 @@ function App() {
   const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
   const [input, setInput] = useState('');
+
+  const inputRef = useRef(null);
 
   const handleChangeRotation = () => {
     setReverse(!reverse);
@@ -81,11 +90,22 @@ function App() {
     [handleIncrementCounter],
   );
 
+  const handlePostToInput = (text) => {
+    console.log('post to input', text);
+    setInput(text);
+  };
+
+  useEffect(() => {
+    console.log(inputRef.current);
+    inputRef.current.focus();
+  }, [input]);
+
   console.log('Render app');
   return (
     <div className="App">
       <header className="App-header">
         <input
+          ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -98,7 +118,10 @@ function App() {
 
         {useMemo(
           () =>
-            posts && posts.map((post) => <Post key={post.id} post={post} />),
+            posts &&
+            posts.map((post) => (
+              <Post onClick={handlePostToInput} key={post.id} post={post} />
+            )),
           [posts],
         )}
 
