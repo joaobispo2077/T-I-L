@@ -1,15 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 // import { Component } from 'react';
-
 import Proptypes from 'prop-types';
 
-const Button = React.memo(({ incrementButton }) => {
+const Post = ({ post }) => {
+  console.log('Render Post');
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  );
+};
+
+Post.propTypes = {
+  post: Proptypes.shape({
+    id: Proptypes.number,
+    title: Proptypes.string,
+    body: Proptypes.string,
+  }),
+};
+
+const Button = ({ incrementButton }) => {
   console.log('Render button');
 
   return <button onClick={() => incrementButton(10)}>+</button>;
-});
+};
 
 Button.displayName = 'Button';
 
@@ -17,13 +35,15 @@ Button.propTypes = {
   incrementButton: Proptypes.func,
 };
 
-const handleClicked = () => {
-  console.log('h1 clicado');
-};
+// const handleClicked = () => {
+//   console.log('h1 clicado');
+// };
 
 function App() {
+  const [posts, setPosts] = useState([]);
   const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [input, setInput] = useState('');
 
   const handleChangeRotation = () => {
     setReverse(!reverse);
@@ -36,31 +56,55 @@ function App() {
   useEffect(() => {
     console.log(`counter atualizou para: ${counter} [componentDidUpdate]`);
   }, [counter]);
-  useEffect(() => console.log('componentDidUpdate'));
+
+  // useEffect(() => console.log('componentDidUpdate'));
+
+  // useEffect(() => {
+  //   console.log('componentDidMount');
+  //   /*trash in component*/
+  //   document.querySelector('h1')?.addEventListener('click', handleClicked);
+
+  //   //component will unmount
+  //   return () => {
+  //     document.querySelector('h1')?.removeEventListener('click', handleClicked);
+  //   };
+  // }, []);
 
   useEffect(() => {
-    console.log('componentDidMount');
-    /*trash in component*/
-    document.querySelector('h1')?.addEventListener('click', handleClicked);
-
-    //component will unmount
-    return () => {
-      document.querySelector('h1')?.removeEventListener('click', handleClicked);
-    };
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((posts) => setPosts(posts));
   }, []);
+
+  const memoButton = useMemo(
+    () => <Button incrementButton={handleIncrementCounter} />,
+    [handleIncrementCounter],
+  );
 
   console.log('Render app');
   return (
     <div className="App">
       <header className="App-header">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
         <img
           src={logo}
           className={`App-logo ${reverse ? 'reverse' : ''}`}
           alt="logo"
         />
 
+        {useMemo(
+          () =>
+            posts && posts.map((post) => <Post key={post.id} post={post} />),
+          [posts],
+        )}
+
+        {posts.length <= 0 && <p>Ainda não existem posts</p>}
         <h1>Contador: {counter}</h1>
-        <Button incrementButton={handleIncrementCounter} />
+        {memoButton}
         <p onClick={handleChangeRotation}>
           {reverse
             ? 'Rodando no sentido Horário'
