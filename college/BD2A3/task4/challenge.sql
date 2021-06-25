@@ -8,7 +8,7 @@ create table if not exists ambulatorios
 )Engine=InnoDB;
 
 
-INSER INTO ambulatorios (numero_ambulatorio,andar,capacidade)
+INSERT INTO ambulatorios (numero_ambulatorio,andar,capacidade)
 VALUES
   (1, 1, 30),
   (2, 1, 50),
@@ -80,3 +80,81 @@ DELETE FROM pacientes WHERE doenca = 'cancer' OR idade < 10;
 
 
 DELETE FROM medicos WHERE cidade = 'Biguacu' AND cidade = 'Palhoca';
+
+
+
+
+
+
+
+
+
+
+
+
+
+create table if not exists ambulatorios
+(
+	numero_ambulatorio int unsigned not null auto_increment,
+    andar int unsigned not null,
+    capacidade smallint unsigned not null,
+    primary key(numero_ambulatorio)
+)Engine=InnoDB;
+
+create table if not exists medicos
+(
+	codigo_medico int unsigned not null auto_increment,
+    nome varchar(50) not null,
+    idade smallint unsigned not null,
+    especialidade varchar(50) not null,
+    cpf varchar(11) unique not null,
+    cidade varchar(50),
+    numero_ambulatorio int unsigned,
+    primary key (codigo_medico),
+    constraint fk_numero_ambulatorio
+		foreign key (numero_ambulatorio)
+        references ambulatorios (numero_ambulatorio)
+        on delete set null
+        on update no action
+)Engine=InnoDB;
+
+create table if not exists pacientes
+(
+	codigo_paciente int unsigned not null auto_increment,
+    nome varchar(50) not null,
+    idade smallint unsigned,
+    cidade varchar(50),
+    cpf varchar(11) unique not null,
+    doenca varchar(50) not null,
+    primary key(codigo_paciente)
+)Engine=InnoDB;
+
+create table if not exists funcionarios
+(
+	codigo_funcionario int unsigned not null auto_increment,
+    nome varchar(50) not null,
+    idade smallint unsigned, 
+    cpf varchar(11) unique not null,
+    cidade varchar(50) not null,
+    salario numeric(10) not null,
+    primary key(codigo_funcionario)
+)Engine=InnoDB;
+
+create table if not exists consultas
+(
+	data_consulta date not null,
+    hora time not null,
+    codigo_medico int unsigned,
+    codigo_paciente int unsigned,
+    primary key (data_consulta, hora, codigo_medico),
+    constraint fk_codigo_medico
+		foreign key (codigo_medico)
+        references medicos (codigo_medico)
+        on update cascade
+        on delete cascade,
+	constraint fk_codigo_paciente
+		foreign key (codigo_paciente)
+		references pacientes (codigo_paciente)
+        on update cascade
+        on delete cascade
+) Engine=InnoDB;
