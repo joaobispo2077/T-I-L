@@ -1,43 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from 'react';
-
-const useAsync = (asyncFunction, shouldRun = false) => {
-  const [state, setState] = useState({
-    result: null,
-    error: null,
-    status: 'iddle',
-  });
-
-  const run = useCallback(() => {
-    setState({
-      result: null,
-      error: null,
-      status: 'pending',
-    });
-
-    return asyncFunction()
-      .then((response) => {
-        setState({
-          result: response,
-          error: null,
-          status: 'settled',
-        });
-      })
-      .catch((error) => {
-        setState({
-          result: null,
-          error: error,
-          status: 'error',
-        });
-      });
-  }, [asyncFunction]);
-
-  useEffect(() => {
-    if (shouldRun) run();
-  }, [run, shouldRun]);
-
-  return [run, state.result, state.error, state.status];
-};
+import { useAsync } from '../../hooks/useAsync';
 
 const fetchData = async () => {
   const response = await fetch('http://jsonplaceholder.typicode.com/posts');
