@@ -1,48 +1,50 @@
 /* eslint-disable react/prop-types */
 // Compound Components
 
-import { Children, cloneElement, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-const Parent = ({ children }) => {
-  console.log(children);
-  return Children.map(children, (child) => {
-    const newChild = cloneElement(child, { style: { fontSize: '24px' } });
-    return newChild;
-  });
-};
+const TurnOnOffContext = createContext();
 
-const TurnOnOff = ({ children }) => {
+const TurnOnOffProvider = ({ children }) => {
   const [isOn, setIsOn] = useState(false);
   const onTurn = () => setIsOn((prevIsOn) => !prevIsOn);
 
-  return Children.map(children, (child) => {
-    const newChild = cloneElement(child, { isOn, onTurn: onTurn });
-    return newChild;
-  });
+  return (
+    <TurnOnOffContext.Provider value={{ isOn, onTurn }}>
+      {children}
+    </TurnOnOffContext.Provider>
+  );
 };
 
-const TurnedOn = ({ isOn, children }) => (isOn ? children : null);
+const TurnedOn = ({ children }) => {
+  const { isOn } = useContext(TurnOnOffContext);
+  return isOn ? children : null;
+};
 
-const TurnedOff = ({ isOn, children }) => (isOn ? null : children);
+const TurnedOff = ({ children }) => {
+  const { isOn } = useContext(TurnOnOffContext);
+  return isOn ? null : children;
+};
 
-const TurnButton = ({ isOn, onTurn }) => (
-  <button onClick={onTurn}>{isOn ? 'ON' : 'OFF'}</button>
-);
+const TurnButton = () => {
+  const { isOn, onTurn } = useContext(TurnOnOffContext);
+  return <button onClick={onTurn}>{isOn ? 'ON' : 'OFF'}</button>;
+};
 
 const Home = () => {
   return (
-    <div>
-      <h1>Hello world</h1>
-      <Parent>
+    <TurnOnOffProvider>
+      <div>
+        <h1>Hello world</h1>
         <p>Testing...</p>
         <p>Testing...</p>
-      </Parent>
-      <TurnOnOff>
-        <TurnedOn>ON THINGS</TurnedOn>
-        <TurnedOff>OFF THINGS...</TurnedOff>
+        <section>
+          <TurnedOn>ON THINGS</TurnedOn>
+          <TurnedOff>OFF THINGS...</TurnedOff>
+        </section>
         <TurnButton />
-      </TurnOnOff>
-    </div>
+      </div>
+    </TurnOnOffProvider>
   );
 };
 export default Home;

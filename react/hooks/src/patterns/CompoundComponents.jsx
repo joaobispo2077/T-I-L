@@ -16,6 +16,10 @@ const TurnOnOff = ({ children }) => {
   const onTurn = () => setIsOn((prevIsOn) => !prevIsOn);
 
   return Children.map(children, (child) => {
+    if (typeof child.type === 'string') {
+      return child;
+    }
+
     const newChild = cloneElement(child, { isOn, onTurn: onTurn });
     return newChild;
   });
