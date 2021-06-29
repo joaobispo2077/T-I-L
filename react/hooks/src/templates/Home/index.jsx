@@ -1,12 +1,41 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import { useLayoutEffect, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useImperativeHandle,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
-const fetchData = async () => {
-  const response = await fetch('http://jsonplaceholder.typicode.com/posts');
-  const data = await response.json();
-  return data;
-};
+const DisplayCounted = forwardRef(function DisplayCounted({ counted }, ref) {
+  const [random, setRandom] = useState(0.18);
+  const divRef = useRef();
+
+  const handleGenerateRandom = () => {
+    setRandom(Math.random().toFixed(2));
+  };
+
+  useImperativeHandle(ref, () => ({
+    divRef: divRef.current,
+    handleGenerateRandom,
+  }));
+
+  return (
+    <div
+      ref={divRef}
+      style={{ height: '100px', width: '100px', overflowY: 'scroll' }}
+    >
+      {Array.isArray(counted) &&
+        counted.map((count) => (
+          <p onClick={handleGenerateRandom} key={`c-${count}`}>
+            {count} +++ {random}
+          </p>
+        ))}
+    </div>
+  );
+});
 
 const Home = () => {
   const [counted, setCounted] = useState([0, 1, 2, 3]);
@@ -14,26 +43,21 @@ const Home = () => {
 
   // this hook is blockant with navigator
   useLayoutEffect(() => {
-    divRef.current.scrollTop = divRef.current.scrollHeight;
+    divRef.current.divRef.scrollTop = divRef.current.divRef.scrollHeight;
   });
 
   const handleIncrementCounted = () => {
     setCounted((prevCounted) =>
       prevCounted.concat(Number(prevCounted.slice(-1)) + 1),
     );
+    divRef.current.handleGenerateRandom();
   };
 
   return (
     <div onClick={handleIncrementCounted}>
       <h1>Home</h1>
       <button>add {counted.slice(-1)}</button>
-      <div
-        ref={divRef}
-        style={{ height: '100px', width: '100px', overflowY: 'scroll' }}
-      >
-        {Array.isArray(counted) &&
-          counted.map((count) => <p key={`c-${count}`}>{count}</p>)}
-      </div>
+      <DisplayCounted counted={counted} ref={divRef} />
     </div>
   );
 };
