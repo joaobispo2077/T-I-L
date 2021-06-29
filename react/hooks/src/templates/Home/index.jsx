@@ -1,50 +1,76 @@
-import { useEffect, useState } from 'react';
-import { useFetch } from '../../hooks/useFetch';
+/* eslint-disable no-unused-vars */
+import { useCallback, useEffect, useState } from 'react';
 
-const Home = () => {
-  const [postId, setPostId] = useState('');
-  const [result, loading] = useFetch(
-    'https://jsonplaceholder.typicode.com/posts/' + postId,
-    {
-      method: 'GET',
-      headers: {
-        abc: '1' + postId,
-      },
-    },
-  );
+const useAsync = (asyncFunction, shouldRun = false) => {
+  const [state, setState] = useState({
+    result: null,
+    error: null,
+    status: 'iddle',
+  });
+
+  const run = useCallback(() => {
+    setState({
+      result: null,
+      error: null,
+      status: 'pending',
+    });
+
+    return asyncFunction()
+      .then((response) => {
+        setState({
+          result: response,
+          error: null,
+          status: 'settled',
+        });
+      })
+      .catch((error) => {
+        setState({
+          result: null,
+          error: error,
+          status: 'error',
+        });
+      });
+  }, [asyncFunction]);
 
   useEffect(() => {
-    console.log('id do post:', postId);
-  }, [postId]);
+    if (shouldRun) run();
+  }, [run, shouldRun]);
 
-  if (!loading && result) {
-    console.log('RESULT', result);
+  return [run, state.result, state.error, state.status];
+};
+
+const fetchData = async () => {
+  const response = await fetch('http://jsonplaceholder.typicode.com/posts');
+  const data = await response.json();
+  return data;
+};
+
+const Home = () => {
+  const [posts, setPosts] = useState(null);
+  const [reFetchData, result, error, status] = useAsync(fetchData, true);
+
+  if (status === 'idle') {
+    return <pre>Nada executando</pre>;
   }
 
-  const handleGetPostDetails = (postID) => {
-    setPostId(postID);
-  };
+  if (status === 'pending') {
+    return <pre>Loading...</pre>;
+  }
 
-  return (
-    <div>
-      <h1 onClick={() => handleGetPostDetails('')}>Posts</h1>
-      {loading && <div>Loading....</div>}
-      {!loading &&
-        result &&
-        Array.isArray(result) &&
-        result.map((post) => (
-          <div key={post.id} onClick={() => handleGetPostDetails(post.id)}>
-            <p>{post.title}</p>
-          </div>
-        ))}
-      {!loading && result && !Array.isArray(result) && (
-        <div>
-          <h2>{result.title}</h2>
-          <p>{result.body}</p>
-        </div>
-      )}
-    </div>
-  );
+  if (status === 'error') {
+    return <pre>{error.message}</pre>;
+  }
+
+  if (status === 'settled') {
+    return (
+      <div>
+        <h1>Posts</h1>
+        <pre>{JSON.stringify(result, null, 2)}</pre>
+      </div>
+    );
+  }
+
+  return <div>Home</div>;
 };
 
 export default Home;
