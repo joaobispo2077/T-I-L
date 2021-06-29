@@ -6,7 +6,7 @@ import { reducer } from './reducer';
 
 export const PostsProvider = ({ children }) => {
   const [postState, postDispatch] = useReducer(reducer, data);
-
+  console.log(postState, postDispatch);
   return (
     <PostsContext.Provider value={{ postState, postDispatch }}>
       {' '}
