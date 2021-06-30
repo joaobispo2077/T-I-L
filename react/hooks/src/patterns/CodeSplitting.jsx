@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// Compound Components
 
 import React, { Suspense, useState } from 'react';
 
