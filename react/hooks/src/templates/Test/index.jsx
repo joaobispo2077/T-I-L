@@ -9,5 +9,9 @@ export const Test = () => {
   console.log(params);
   console.log(location);
   console.log(history);
-  return <div>Testing</div>;
+  return (
+    <div>
+      Testing {params.slug} {params.id}
+    </div>
+  );
 };

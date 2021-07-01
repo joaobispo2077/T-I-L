@@ -6,6 +6,7 @@ import { PostsProvider } from './contexts/PostsProvider';
 import './index.css';
 import App from './templates/App';
 import { Test } from './templates/Test';
+import { NotFound } from './templates/NotFound';
 import { Menu } from './components/Menu';
 
 ReactDOM.render(
@@ -15,8 +16,11 @@ ReactDOM.render(
         <BrowserRouter>
           <Menu />
           <Switch>
+            <Route path="/test/:slug/:id" component={Test} />
+            <Route path="/test/:slug" component={Test} />
+            <Route path="/test" component={Test} />
             <Route path="/" component={App} exact />
-            <Route path="/test/:slug?/:id?" component={Test} exact />
+            <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
       </CounterContextProvider>
