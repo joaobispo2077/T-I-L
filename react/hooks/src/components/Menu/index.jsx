@@ -6,7 +6,7 @@ export const Menu = () => {
     <nav>
       <Link to="/">Home</Link>
       <br />
-      <Link to="/app">App</Link>
+      <Link to="/test/123">App</Link>
     </nav>
   );
 };
