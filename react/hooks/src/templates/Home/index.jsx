@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
+import { Button } from '../../components/Button';
+import { HeadingCounter } from '../../components/HeadingCounter';
 import { useCounter } from '../../contexts/CounterContext';
 
 const Home = () => {
@@ -11,7 +13,10 @@ const Home = () => {
   console.log(state, actions);
   return (
     <section>
-      <h1 onClick={() => actions.increase()}>Hello world</h1>
+      <HeadingCounter />
+      <div>
+        <Button onButtonClicked={() => actions.increase()}>Increase</Button>
+      </div>
     </section>
   );
 };
