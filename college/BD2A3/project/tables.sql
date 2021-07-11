@@ -89,14 +89,83 @@ CREATE TABLE lembrete_tarefa (
 );
 
 
+-- TODO: NA PARTE 2, ATUALIZAR AS IDADES
+INSERT INTO usuario 
+  ( firstname, lastname, idade, apelido, email, senha )
+VALUES 
+  ('Joao', 'Bispo', 62, 'Joao', 'joao@nota10.com', '12345'),
+  ('Viviane', 'Queiroz', 6, 'Viviane', 'viviane@nota10.com', '12345'),
+  ('John', 'Doe', 20, 'Jo', 'john@hotmail.com', '12345'),
+  ('Vivi', 'Morninstar', 23, 'Vi', 'vmorninstar@gmail.com', '12345'),
+  ('Sofia', 'Silva', 3, 'Soso', 'sofia@silva.com', '12345');
 
-CREATE TABLE IF NOT EXISTS usuario (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  firstname VARCHAR(15) NOT NULL,
-  lastname VARCHAR(25),
-  idade TINYINT UNSIGNED,
-  apelido VARCHAR(255),
-  email VARCHAR(255) NOT NULL UNIQUE,
-  senha VARCHAR(255) NOT NULL
-);
+INSERT INTO tarefa 
+  ( titulo, descricao, tag, data, hora, usuario_id )
+VALUES
+  ( 'Resolver atividades da faculdade', 'Esse grupo de subtarefas tem como objetivo o fechamento das atividades da faculdade', 'FACULDADE', '2021-08-10', '20:00', 1 ),
+  ('Experimentar comidas novas', 'Provar comidas diferentes do comum', 'COMIDA', '2021-07-16', '10:00', 1),
+  ( 'Estudar Programacao', 'Aperfeicoar o desenvolvimento de APIS com Node.js com foco na metodologia RESTful, arquitetura Serverless e com banco de dados mongo db', 'ESTUDO', '2021-08-28', '04:00', 3 ),
+  ('Correr um pouco', 'Fazer uma corrida do Horto florestal ate a paulista quando a Pandemia acabar', 'ESPORTE', '2022-11-05', '15:00', 3),
+  ( 'Relaxar', 'Zerar alguns jogos onde as escolhas importam apos finalizar esse semestre', 'ENTRETENIMENTO', '2021-08-10', '22:30', 5 ),
+  ('Organizar festival', 'Fazer festival de musica', 'ENTRETENIMENTO', '2025-11-05', '15:00', 5),
+ ('Agendar oftalmologista para Joao', 'As subtarefas contem o que precisa ser pesquisado antes de agendar uma consulta', 'SAÚDE', '2021-07-30', '17:30', 2),
+  ('Comprar novos talheres e pratos', 'As subtarefas contem as caracteristicas e quantidades de cada talher e prato', 'MERCADO', '2021-08-15', '16:00', 2),
+  ('Inscrição na aula de box', 'Verificar nas subtarefas os preparativos necessarios para a inscricao para aulas de box', 'SAÚDE', '2021-09-18', '10:00', 4),
+  ('Construir uma aplicacao utilizando firebase', 'As subtarefas contem a ideia do projeto e os servicos que serao utilizados', 'ESTUDO', '2021-08-20', '15:00', 4);
 
+INSERT INTO subtarefa 
+  ( descricao, usuario_id )
+VALUES 
+  ('Preparar fantasias', 5),
+  ('Limpar patio', 5),
+  ('Comecar pela atividade de banco de dados que e a mais complexa e extensa', 1),
+  ('Depois resolver as atividades de Redes que eu nao gosto muito e isso faz ser dificil ', 1),
+  ('Coletar lots de jogo gratis para poder relaxar jogando', 3),
+  ('Comecar por Detroit Become Human', 3),
+  ('Pesquisar as clinicas mais proximas e preco das consultas', 2),
+  ('Comprar armacao online', 2),
+  ('Comprar 15 talheres na cor madeira', 2),
+  ('Comprar 7 pratos na cor bege', 2),
+   ('Comprar luvas de box e fazer inscricao no site da academia', 4),
+  ('App de questões de vestibular', 4),
+  ('Autenticacao e Realtime Database', 4);
+
+
+INSERT INTO subtarefa_tarefa
+  ( usuario_id, tarefa_id, subtarefa_id ) 
+VALUES
+  (5,  6, 1),
+  (5,  6, 2),
+  (1,  1, 3),
+  (1,  1, 4),
+  (3,  5, 5),
+  (3,  5, 6),
+  (2, 7, 7),
+  (2, 7, 8),
+  (2, 8, 9),
+  (2, 8, 10),
+  (4, 9, 11),
+  (4, 10, 12),
+  (4, 10, 13);
+
+INSERT INTO lembrete
+ (data, hora, usuario_id )
+VALUES 
+  ('2021-07-29', '08:30', 2),
+  ('2021-07-14', '12:00', 2),
+  ('2021-09-17', '16:00', 4),
+  ( '2021-10-20', '10:20', 5 ),
+  ( '2021-09-02', '04:20', 1 ),
+  ( '2021-08-15', '09:00', 1 ),
+  ( '2021-12-03', '19:00', 3 );
+
+INSERT INTO lembrete_tarefa
+  (usuario_id, tarefa_id,lembrete_id )
+VALUES 
+  ( 5,  6, 4 ),
+  ( 1,  1, 5 ),
+  ( 1, 1, 6 ),
+  ( 3, 5 , 7 ),
+  ( 2, 7, 1),
+  ( 2, 8, 2),
+  ( 2, 9, 3);
