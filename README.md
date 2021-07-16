@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>Linguagem C</td>
-                <td><a href="https://github.com/joaobispo2077/T-I-L/tree/master/alura-c">alura-c</a></td>
+                <td><a href="https://github.com/joaobispo2077/T-I-L/tree/master/alura-c">c</a></td>
                 <td>undefined</td>
             </tr>
         </table>
