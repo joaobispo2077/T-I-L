@@ -5,11 +5,13 @@ export interface Memento {
   getName(): string;
   getDate(): Date;
 }
-
 export class ConcreteMemento implements Memento {
-  constructor(private name: string, private date: Date, private text: string, private fileFormat: string) {
-
-  }
+  constructor(
+    private readonly name: string,
+    private readonly date: Date,
+    private readonly text: string,
+    private readonly fileFormat: string
+  ) {}
 
   getName(): string {
     return this.name;
@@ -32,13 +34,22 @@ export class ConcreteMemento implements Memento {
  // Originator
  export class TextEditor {
   private _text: string = '';
-  public filename: string = '';
+  private _filename: string = '';
+  private _fileFormat: string = '';
 
-  constructor(private fileFormat: string, text: string) {
+  constructor(
+    filename: string,
+    fileFormat: string,
+    text: string,
+  ) {
     this.text = text;
+    this.filename = filename;
+    this.fileFormat = fileFormat;
+
   }
 
   public get text(): string {
+    //
     return this._text;
   }
 
@@ -47,21 +58,39 @@ export class ConcreteMemento implements Memento {
      this._text = value;
    }
 
-   save(): Readonly<Memento> {
-     const date = new Date();
+  public get filename(): string {
+    return this._filename;
+  }
 
-     return new ConcreteMemento(this.text.slice(0, 5), date, this._text, this.fileFormat);
+  public set filename(value: string) {
+     this._filename = value;
    }
 
-   restore(memento: Memento): void {
-     const concreteMemento = memento as ConcreteMemento;
-     this.text = concreteMemento.getText();
-     this.filename = concreteMemento.getName();
-     this.fileFormat = concreteMemento.getFileFormat();
+  public get fileFormat(): string {
+    return this._fileFormat;
+  }
+
+  public set fileFormat(value: string) {
+     this._fileFormat = value;
    }
+
+  save(): Readonly<Memento> {
+    const date = new Date();
+    console.log(`Saving data at ${date.toLocaleString()}...`);
+    return new ConcreteMemento(this.filename, date, this.text, this.fileFormat);
+  }
+
+  restore(memento: Memento): void {
+    const concreteMemento = memento as ConcreteMemento;
+
+    this.text = concreteMemento.getText();
+    this.filename = concreteMemento.getName();
+    this.fileFormat = concreteMemento.getFileFormat();
+  }
+
  }
 
- // Caretaker
+ // Caretaker - Command
  export class TextEditorBackupManager {
    private mementos: Memento[] = [];
    
@@ -81,19 +110,19 @@ export class ConcreteMemento implements Memento {
     }
 
     this.textEditor.restore(memento);
-    console.info('Dado restaurado com suceso!');
+    console.info('Dados restaurados com suceso!');
    }
  }
 
  // program
 
- const textEditor = new TextEditor('.txt', 'Testando aula de ES3A3');
+ const textEditor = new TextEditor('Example_design_pattern','.txt', 'aula de ES3A3');
  const textEditorBackupManager = new TextEditorBackupManager(textEditor);
- console.info(textEditor)
+ console.info("\n\n# first text editor",textEditor)
 
  textEditorBackupManager.backup();
  textEditor.text = 'Testando aula de ES3A3 1223456';
- console.info(textEditor);
+ console.info("\n\n@ second text editor",textEditor);
 
  textEditorBackupManager.undo();
- console.info(textEditor);
+ console.info("\n\n$ third text editor", textEditor);
