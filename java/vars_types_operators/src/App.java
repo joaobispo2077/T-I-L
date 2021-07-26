@@ -13,6 +13,7 @@ public class App {
     App.getOtherTypes();
 
     Calc.execute();
+    Calc.operationsOrder();
   }
 
   public static void getOtherTypes() {

@@ -25,5 +25,27 @@ public class Calc {
 
     System.out.println(v1--); // read variable first
     System.out.println(--v1); // make operation first
+
+    v1 += 7;
+    v1 -= 5;
+    System.out.println(v1); // make operation first
+
+  }
+
+  public static void operationsOrder() {
+    int vA = 12;
+    int vB = 9;
+    int vC = 6;
+    int vD = 3;
+
+    int r1 = vA + vB / vC;
+    int r2 = (vA + vB) / vC;
+    int r3 = vA / vC * vD + vB;
+    int r4 = vA / (vC * (vD + vB));
+
+    System.out.println("r1 = " + r1);
+    System.out.println("r2 = " + r2);
+    System.out.println("r3 = " + r3);
+    System.out.println("r4 = " + r4);
   }
 }
