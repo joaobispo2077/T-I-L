@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GridImage/> should match with snapshot 1`] = `
+.c5 {
+  font-size: 2.4rem;
+}
+
+.c2 .c4 {
+  margin-bottom: 3.2rem;
+}
+
+.c6 {
+  counter-reset: grid-counter;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: 3.2rem;
+}
+
+.c7 {
+  overflow: hidden;
+}
+
+.c8 {
+  width: 100%;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+}
+
+.c8:hover {
+  -webkit-transform: scale(1.2) rotate(10deg);
+  -ms-transform: scale(1.2) rotate(10deg);
+  transform: scale(1.2) rotate(10deg);
+}
+
+.c0 {
+  background: #FFFFFF;
+  color: #0A1128;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 3.2rem;
+  width: 100%;
+}
+
+.c3 {
+  color: #0A1128;
+  font-size: 6.4rem;
+  text-transform: uppercase;
+}
+
+@media (max-width:768px) {
+  .c6 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width:768px) {
+  .c3 {
+    font-size: 4.0rem;
+  }
+}
+
+<div>
+  <section
+    class="c0"
+    id=""
+  >
+    <section
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        <h2
+          class="c3"
+        >
+          My grid
+        </h2>
+        <footer
+          class="c4 c5"
+        >
+          Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde
+        </footer>
+        <div
+          class="c6"
+        >
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 1"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=1"
+            />
+          </div>
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 2"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=2"
+            />
+          </div>
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 3"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=3"
+            />
+          </div>
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 4"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=4"
+            />
+          </div>
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 5"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=5"
+            />
+          </div>
+          <div
+            class="c7"
+          >
+            <img
+              alt="Teste 6"
+              class="c8"
+              src="https://source.unsplash.com/random/800x800?r=6"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+`;
