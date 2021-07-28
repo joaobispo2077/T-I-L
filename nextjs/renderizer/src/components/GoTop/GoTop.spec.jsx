@@ -3,17 +3,17 @@ import { GoTop } from '.';
 import { renderTheme } from '../../styles/themes/renderTheme';
 
 describe('<GoTop/>', () => {
-	it('should render', () => {
-		render(renderTheme(<GoTop />));
+  it('should render', () => {
+    render(renderTheme(<GoTop />));
 
-		expect(screen.getByRole('link')).toBeInTheDocument();
-		expect(screen.getByRole('link')).toHaveAttribute('href', '#');
-	});
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveAttribute('href', '#');
+  });
 
-	it('should match inline snapshot', () => {
-		const { container } = render(renderTheme(<GoTop />));
+  it('should match inline snapshot', () => {
+    const { container } = render(renderTheme(<GoTop />));
 
-		expect(container).toMatchInlineSnapshot(`
+    expect(container).toMatchInlineSnapshot(`
 		.c0 {
 		  position: fixed;
 		  background: #0A1128;
@@ -70,5 +70,5 @@ describe('<GoTop/>', () => {
 		  </a>
 		</div>
 	`);
-	});
+  });
 });

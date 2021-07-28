@@ -4,31 +4,31 @@ import { renderTheme } from '../../styles/themes/renderTheme';
 // import { themes } from '../../styles/themes';
 
 describe('<MenuLink/>', () => {
-	it('should render with target _self', () => {
-		render(renderTheme(<MenuLink link="http://localhost">Texto</MenuLink>));
+  it('should render with target _self', () => {
+    render(renderTheme(<MenuLink link="http://localhost">Texto</MenuLink>));
 
-		expect(screen.getByRole('link')).toBeInTheDocument();
-		expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
-	});
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
+  });
 
-	it('should render with target _self', () => {
-		render(
-			renderTheme(
-				<MenuLink link="http://google.com.br" newTab>
-					Texto
-				</MenuLink>,
-			),
-		);
+  it('should render with target _self', () => {
+    render(
+      renderTheme(
+        <MenuLink link="http://google.com.br" newTab>
+          Texto
+        </MenuLink>,
+      ),
+    );
 
-		expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
-	});
+    expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
+  });
 
-	it('should match with snapshot', () => {
-		const { container } = render(
-			renderTheme(<MenuLink link="http://google.com.br">Texto</MenuLink>),
-		);
+  it('should match with snapshot', () => {
+    const { container } = render(
+      renderTheme(<MenuLink link="http://google.com.br">Texto</MenuLink>),
+    );
 
-		expect(container.firstChild).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
 		.c0 {
 		  display: block;
 		  -webkit-text-decoration: none;
@@ -62,5 +62,5 @@ describe('<MenuLink/>', () => {
 		  target="_self"
 		/>
 	`);
-	});
+  });
 });

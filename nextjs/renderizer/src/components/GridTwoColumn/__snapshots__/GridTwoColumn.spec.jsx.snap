@@ -21,6 +21,10 @@ exports[`<GridTwoColumn/> should match with snapshot 1`] = `
   margin-bottom: 3.2rem;
 }
 
+.c7 {
+  width: 100%;
+}
+
 .c0 {
   background: #FFFFFF;
   color: #0A1128;
@@ -41,6 +45,7 @@ exports[`<GridTwoColumn/> should match with snapshot 1`] = `
   max-width: 120rem;
   margin: 0 auto;
   padding: 3.2rem;
+  width: 100%;
 }
 
 .c6 {
@@ -69,6 +74,7 @@ exports[`<GridTwoColumn/> should match with snapshot 1`] = `
 <div>
   <section
     class="c0"
+    id=""
   >
     <section
       class="c1"
@@ -94,8 +100,8 @@ exports[`<GridTwoColumn/> should match with snapshot 1`] = `
           class=""
         >
           <img
-            alt="GridTwoColumn"
-            class=""
+            alt="bla bla"
+            class="c7"
             src="assets/images/javascript.svg"
           />
         </div>

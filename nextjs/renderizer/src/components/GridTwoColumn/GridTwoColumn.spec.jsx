@@ -4,9 +4,9 @@ import { renderTheme } from '../../styles/themes/renderTheme';
 import mock from './mock';
 
 describe('<GridTwoColumn/>', () => {
-	it('should match with snapshot', () => {
-		const { container } = render(renderTheme(<GridTwoColumn {...mock} />));
+  it('should match with snapshot', () => {
+    const { container } = render(renderTheme(<GridTwoColumn {...mock} />));
 
-		expect(container).toMatchSnapshot();
-	});
+    expect(container).toMatchSnapshot();
+  });
 });
