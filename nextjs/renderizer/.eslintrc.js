@@ -28,5 +28,7 @@ module.exports = {
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'import/no-anonymous-default-export': 'off',
+    '@next/next/no-img-element': 'off',
   },
 };
