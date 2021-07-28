@@ -1,10 +1,24 @@
 import * as Styled from './styles';
 import P from 'prop-types';
+import Link from 'next/link';
 
 import { Heading } from '../Heading';
 
 export const LogoLink = ({ text, src = null, link }) => {
-  console.log('logo link', text, src, link);
+  const isNextLink = link.match(/^\//);
+
+  if (isNextLink) {
+    return (
+      <Heading size="small" uppercase darken>
+        <Link href={link} passHref>
+          <Styled.Container>
+            {src ? <img src={src} alt={text} /> : text}
+          </Styled.Container>
+        </Link>
+      </Heading>
+    );
+  }
+
   return (
     <Heading size="small" uppercase darken>
       <Styled.Container href={link}>
