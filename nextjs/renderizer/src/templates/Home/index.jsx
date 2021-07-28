@@ -19,6 +19,9 @@ function Home({ pageData }) {
     <>
       <Head>
         <title>{title || config.title}</title>
+
+        <meta name="theme-color" content="#42f48c" />
+        <meta name="description" content="Landing page top demais" />
       </Head>
       <Base links={links} logo={{ text, link, src }} footer={footer}>
         {sections.map((section, index) => {
