@@ -1,5 +1,6 @@
 import P from 'prop-types';
 
+import { mapData } from '../api';
 import config from '../config';
 import Home from '../templates/Home';
 import { loadPages } from '../api/loadPages';
@@ -10,7 +11,8 @@ export default function Index({ pageData = null }) {
 }
 
 export const getStaticProps = async () => {
-  const payload = await loadPages(config.defaultSlug);
+  const data = await loadPages(config.defaultSlug);
+  const payload = data.length > 0 ? mapData(data[0]) : null;
 
   if (!payload) {
     return {
