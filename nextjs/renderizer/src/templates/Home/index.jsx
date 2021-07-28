@@ -1,8 +1,7 @@
 import P from 'prop-types';
 import Head from 'next/head';
-import { Base } from '../Base';
 
-import { NotFound } from '../NotFound';
+import { Base } from '../Base';
 
 import { GridTwoColumn } from '../../components/GridTwoColumn';
 import { GridContent } from '../../components/GridContent';
@@ -11,10 +10,6 @@ import { GridImage } from '../../components/GridImage';
 
 import config from '../../config';
 function Home({ pageData }) {
-  if (!pageData) {
-    return <NotFound />;
-  }
-
   // eslint-disable-next-line no-unused-vars
   const { menu, sections, footer, slug, title } = pageData;
   // eslint-disable-next-line no-unused-vars
