@@ -13,6 +13,15 @@ describe('<LogoLink/>', () => {
     expect(heading.firstChild).toHaveAttribute('href', '#target');
   });
 
+  it('should render internal link', () => {
+    render(renderTheme(<LogoLink link="/target" text="Hello World" />));
+
+    const heading = screen.getByRole('heading', { name: 'Hello World' });
+
+    expect(heading).toBeInTheDocument();
+    expect(heading.firstChild).toHaveAttribute('href', '/target');
+  });
+
   it('should render image logo', () => {
     render(
       renderTheme(
