@@ -1,12 +1,15 @@
-import P from 'prop-types';
-
 import { mapData } from '../api';
 import config from '../config';
 import Home from '../templates/Home';
 import { loadPages } from '../api/loadPages';
 import { useRouter } from 'next/router';
 import { Loading } from '../templates/Loading';
-export default function Index({ pageData = null }) {
+
+export type IndexProps = {
+  pageData: [] | null;
+};
+
+export default function Index({ pageData = null }: IndexProps) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -32,8 +35,4 @@ export const getStaticProps = async () => {
       pageData: payload,
     },
   };
-};
-
-Index.propTypes = {
-  pageData: P.object,
 };
