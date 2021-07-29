@@ -4,8 +4,15 @@ import { mapData } from '../api';
 import config from '../config';
 import Home from '../templates/Home';
 import { loadPages } from '../api/loadPages';
-
+import { useRouter } from 'next/router';
+import { Loading } from '../templates/Loading';
 export default function Index({ pageData = null }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   console.log(pageData);
   return <Home pageData={pageData} />;
 }
