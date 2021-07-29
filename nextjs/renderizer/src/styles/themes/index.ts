@@ -37,4 +37,4 @@ export const themes = {
       lteMedium: '(max-width: 768px)',
     },
   },
-};
+} as const;
