@@ -1,3 +1,5 @@
+import { NavLink } from '.';
+
 export default [
   {
     id: 1,
@@ -29,4 +31,4 @@ export default [
     link: '#target5',
     newTab: false,
   },
-];
+] as NavLink[];
