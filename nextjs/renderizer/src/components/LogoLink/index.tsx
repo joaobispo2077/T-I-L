@@ -1,10 +1,15 @@
 import * as Styled from './styles';
-import P from 'prop-types';
 import Link from 'next/link';
 
 import { Heading } from '../Heading';
 
-export const LogoLink = ({ text, src = null, link }) => {
+export type LogoLinkProps = {
+  text: string;
+  src?: string;
+  link: string;
+};
+
+export const LogoLink = ({ text, src = null, link }: LogoLinkProps) => {
   const isNextLink = link.match(/^\//);
 
   if (isNextLink) {
@@ -26,10 +31,4 @@ export const LogoLink = ({ text, src = null, link }) => {
       </Styled.Container>
     </Heading>
   );
-};
-
-LogoLink.propTypes = {
-  text: P.string.isRequired,
-  src: P.string,
-  link: P.string.isRequired,
 };
