@@ -123,37 +123,43 @@ VALUES
   (
     'Estudar Programacao', 'Aperfeicoar o desenvolvimento de APIS com Node.js com foco na metodologia RESTful, arquitetura Serverless e com banco de dados mongo db',
     3, '2021-08-28', '04:00', 3
-  ),
+  );
+
+INSERT INTO tarefa (
+  titulo, descricao, tag_id, data, hora,
+  usuario_id, status
+)
+VALUES
   (
     'Correr um pouco', 'Fazer uma corrida do Horto florestal ate a paulista quando a Pandemia acabar',
-    4, '2022-11-05', '15:00', 3
+    4, '2022-11-05', '15:00', 3, 'EM ANDAMENTO'
   ),
   (
     'Relaxar', 'Zerar alguns jogos onde as escolhas importam apos finalizar esse semestre',
-    5, '2021-08-10', '22:30', 5
+    5, '2021-08-10', '22:30', 5, 'RESOLVIDO'
   ),
   (
     'Organizar festival', 'Fazer festival de musica',
-    5, '2025-11-05', '15:00', 5
+    5, '2025-11-05', '15:00', 5, 'EM ANDAMENTO'
   ),
   (
     'Agendar oftalmologista para Joao',
     'As subtarefas contem o que precisa ser pesquisado antes de agendar uma consulta',
-    6, '2021-07-30', '17:30', 2
+    6, '2021-07-30', '17:30', 2, 'RESOLVIDO'
   ),
   (
     'Comprar novos talheres e pratos',
     'As subtarefas contem as caracteristicas e quantidades de cada talher e prato',
-    7, '2021-08-15', '16:00', 2
+    7, '2021-08-15', '16:00', 2, 'EM ANDAMENTO'
   ),
   (
     'Inscrição na aula de box', 'Verificar nas subtarefas os preparativos necessarios para a inscricao para aulas de box',
-    6, '2021-09-18', '10:00', 4
+    6, '2021-09-18', '10:00', 4, 'RESOLVIDO'
   ),
   (
     'Construir uma aplicacao utilizando firebase',
     'As subtarefas contem a ideia do projeto e os servicos que serao utilizados',
-    3, '2021-08-20', '15:00', 4
+    3, '2021-08-20', '15:00', 4, 'EM ANDAMENTO'
   );
 
 INSERT INTO subtarefa (descricao, usuario_id)
