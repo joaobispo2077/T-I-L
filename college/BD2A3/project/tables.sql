@@ -3,8 +3,8 @@ USE agendador_de_tarefas;
 
 CREATE TABLE IF NOT EXISTS usuario (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  firstname VARCHAR(15) NOT NULL,
-  lastname VARCHAR(25),
+  nome VARCHAR(15) NOT NULL,
+  sobrenome VARCHAR(25),
   idade TINYINT UNSIGNED,
   apelido VARCHAR(255),
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -81,7 +81,7 @@ VALUES
   ('MERCADO', 'VERMELHO');
 
 INSERT INTO usuario (
-  firstname, lastname, idade, apelido,
+  nome, sobrenome, idade, apelido,
   email, senha
 )
 VALUES
@@ -221,10 +221,15 @@ VALUES
   (2, 7, 7),
   (2, 7, 8),
   (2, 8, 9),
-  (2, 8, 10),
-  (4, 9, 11),
-  (4, 10, 12),
-  (4, 10, 13);
+  (2, 8, 10);
+
+INSERT INTO subtarefa_tarefa (
+  usuario_id, tarefa_id, subtarefa_id, concluido
+)
+VALUES
+  (4, 9, 11, TRUE),
+  (4, 10, 12, TRUE),
+  (4, 10, 13, TRUE);
 
 INSERT INTO lembrete (data, hora, usuario_id)
 VALUES
