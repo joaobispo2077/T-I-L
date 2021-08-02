@@ -1,15 +1,8 @@
 import * as Styled from './styles';
-import { MenuLink } from '../MenuLink';
-
-export interface NavLink {
-  id: string | number;
-  text: string;
-  link: string;
-  newTab?: boolean;
-}
+import { MenuLink, MenuLinkProps } from '../MenuLink';
 
 export type NavLinksProps = {
-  links?: NavLink[];
+  links?: MenuLinkProps[];
 };
 
 export const NavLinks = ({ links = [] }: NavLinksProps) => {

@@ -1,4 +1,4 @@
-import { NavLink } from '.';
+import { MenuLinkProps } from '../MenuLink';
 
 export default [
   {
@@ -31,4 +31,4 @@ export default [
     link: '#target5',
     newTab: false,
   },
-] as NavLink[];
+] as MenuLinkProps[];

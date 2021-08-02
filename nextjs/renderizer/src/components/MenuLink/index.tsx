@@ -2,6 +2,7 @@ import * as Styled from './styles';
 import Link from 'next/link';
 
 export type MenuLinkProps = {
+  id?: string | number;
   text: React.ReactNode;
   link: string;
   newTab?: boolean;
