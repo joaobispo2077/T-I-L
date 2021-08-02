@@ -1,4 +1,5 @@
-import { Heading } from './index';
+import { Heading, HeadingProps } from './index';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
 export default {
   title: 'Heading',
@@ -15,10 +16,13 @@ export default {
       default: 'light',
     },
   },
-};
+} as Meta;
 
-export const Dark = (args) => <Heading {...args} darken={true} />;
-export const Light = (args) => <Heading {...args} />;
+export const Dark: Story<HeadingProps> = (args) => (
+  <Heading {...args} darken={true} />
+);
+
+export const Light: Story<HeadingProps> = (args) => <Heading {...args} />;
 
 Light.parameters = {
   backgrounds: {
