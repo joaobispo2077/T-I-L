@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import P from 'prop-types';
 import { Menu as MenuIcon } from '@styled-icons/material-outlined';
 import { Close as CloseIcon } from '@styled-icons/material-outlined';
 
 import * as Styled from './styles';
 import { SectionContainer } from '../SectionContainer';
-import { LogoLink } from '../LogoLink';
+import { MenuLinkProps } from '../MenuLink';
 import { NavLinks } from '../NavLinks';
+import { LogoLinkProps, LogoLink } from '../LogoLink';
 
-export const Menu = ({ links = [], logo }) => {
+export type MenuProps = {
+  links?: MenuLinkProps[];
+  logo: LogoLinkProps;
+};
+
+export const Menu = ({ links = [], logo }: MenuProps) => {
   const [visible, setVisible] = useState(false);
 
   console.log('logoo', logo);
@@ -21,7 +26,6 @@ export const Menu = ({ links = [], logo }) => {
     <>
       <Styled.Button
         aria-label="Open/Close menu"
-        visible={visible}
         onClick={toggleMenuVisibility}
       >
         {visible ? (
@@ -40,9 +44,4 @@ export const Menu = ({ links = [], logo }) => {
       </Styled.Container>
     </>
   );
-};
-
-Menu.propTypes = {
-  ...NavLinks.propTypes,
-  logo: P.shape(LogoLink.propTypes).isRequired,
 };

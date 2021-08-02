@@ -3,7 +3,11 @@ import styled, { css } from 'styled-components';
 import { Container as SectionContainer } from '../SectionContainer/styles';
 import { Title as Heading } from '../Heading/styles';
 
-export const Container = styled.div`
+type MenuProps = {
+  visible: boolean;
+};
+
+export const Container = styled.div<MenuProps>`
   ${({ theme, visible }) => css`
     position: fixed;
     z-index: 5;

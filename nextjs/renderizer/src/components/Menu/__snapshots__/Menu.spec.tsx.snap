@@ -77,24 +77,6 @@ exports[`<Menu/> should match with snapshot 1`] = `
   height: 2.5rem;
 }
 
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: inherit;
-}
-
-.c8 > img {
-  height: 3rem;
-}
-
 .c9 {
   background-color: #fff;
   display: -webkit-box;
@@ -131,6 +113,24 @@ exports[`<Menu/> should match with snapshot 1`] = `
 .c10:hover::after {
   left: 25%;
   width: 50%;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.c8 > img {
+  height: 3rem;
 }
 
 @media (max-width:768px) {
