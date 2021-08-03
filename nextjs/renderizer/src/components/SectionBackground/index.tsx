@@ -1,13 +1,19 @@
 import * as Styled from './styles';
-import P from 'prop-types';
 
 import { SectionContainer } from '../SectionContainer';
+import React from 'react';
+
+export type SectionBackgroundProps = {
+  children: React.ReactNode;
+  background?: boolean;
+  sectionId?: string;
+};
 
 export const SectionBackground = ({
   children,
   background = false,
   sectionId = '',
-}) => {
+}: SectionBackgroundProps) => {
   const id = sectionId ? sectionId : '';
 
   return (
@@ -15,10 +21,4 @@ export const SectionBackground = ({
       <SectionContainer>{children}</SectionContainer>
     </Styled.Container>
   );
-};
-
-SectionBackground.propTypes = {
-  children: P.oneOfType([P.string, P.node, P.element]),
-  background: P.bool,
-  sectionId: P.string,
 };

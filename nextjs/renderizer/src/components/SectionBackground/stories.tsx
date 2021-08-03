@@ -1,4 +1,6 @@
 import { SectionBackground } from '.';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { SectionBackgroundProps } from '.';
 
 export default {
   title: 'SectionBackground',
@@ -20,9 +22,9 @@ export default {
     children: { type: 'string' },
     background: { type: 'boolean' },
   },
-};
+} as Meta;
 
-export const LightBackground = (args) => {
+export const LightBackground: Story<SectionBackgroundProps> = (args) => {
   return <SectionBackground {...args} />;
 };
 
