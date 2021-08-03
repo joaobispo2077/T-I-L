@@ -27,22 +27,20 @@ export const Grid = styled.div`
 `;
 
 export const GridElement = styled.div`
-  ${() => css`
-    ${HeadingTitle} {
-      position: relative;
-      left: 5rem;
-    }
+  ${HeadingTitle} {
+    position: relative;
+    left: 5rem;
+  }
 
-    ${HeadingTitle}::before {
-      counter-increment: grid-counter;
-      content: counter(grid-counter);
-      position: absolute;
-      font-size: 7rem;
+  ${HeadingTitle}::before {
+    counter-increment: grid-counter;
+    content: counter(grid-counter);
+    position: absolute;
+    font-size: 7rem;
 
-      top: -2rem;
-      left: -5rem;
+    top: -2rem;
+    left: -5rem;
 
-      transform: rotate(5deg);
-    }
-  `}
+    transform: rotate(5deg);
+  }
 `;
