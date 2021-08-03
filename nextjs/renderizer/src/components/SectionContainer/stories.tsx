@@ -1,4 +1,5 @@
-import { SectionContainer } from '.';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { SectionContainer, SectionContainerProps } from '.';
 
 export default {
   title: 'SectionContainer',
@@ -19,8 +20,8 @@ export default {
   argTypes: {
     children: { type: 'string' },
   },
-};
+} as Meta;
 
-export const Template = (args) => {
+export const Template: Story<SectionContainerProps> = (args) => {
   return <SectionContainer {...args} />;
 };
