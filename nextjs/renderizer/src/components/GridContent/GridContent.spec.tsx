@@ -6,7 +6,7 @@ import mock from './mock';
 describe('<GridContent/>', () => {
   it('should rendar without brackground', () => {
     const { container } = render(
-      renderTheme(<GridContent {...mock} hasBackground={false} />),
+      renderTheme(<GridContent {...mock} background={false} />),
     );
 
     expect(container.firstChild).toBeInTheDocument();
