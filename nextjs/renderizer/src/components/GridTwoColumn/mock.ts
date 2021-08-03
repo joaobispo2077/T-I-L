@@ -1,3 +1,5 @@
+import { GridTwoColumnProps } from '.';
+
 export default {
   title: 'GridTwoColumn',
   description:
@@ -7,4 +9,4 @@ export default {
     alternativeText: 'bla bla',
   },
   background: true,
-};
+} as GridTwoColumnProps;
