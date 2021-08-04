@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./styles/global.css">
   <link rel="stylesheet" href="./styles/template.css">
 
-  <link rel="stylesheet" href="./styles/home.css">
+  <link rel="stylesheet" href="./styles/idade.css">
 </head>
 
 <body id="main_container">
@@ -32,34 +32,60 @@
 
   <main class="container hero">
     <section class="hero__box">
-      <form id="form__parquimetro" class="basic__form">
+      <form id="form__idade" class="basic__form">
         <h2>Digite seus dados para descobrir a sua idade!</h2>
         <div for="name" class="basic__input">
           <label for="name">Nome:</label><br>
-          <input id="name" name="name" type="text" /><br>
+          <input id="name" placeholder="Exemplo: João" name="name" type="text" required /><br>
         </div>
 
         <div class="basic__input">
           <label for="cpf">Cpf:</label><br>
-          <input id="cpf" name="cpf" type="text" /><br>
+          <input id="cpf" placeholder="Exemplo: 000.000.00-00" name="cpf" type="text" minlength="11" maxlength="11"
+            required /><br>
         </div>
 
         <div class="basic__input">
           <label for="birthdate">Data de nascimento:</label><br>
-          <input id="birthdate" name="birthdate" type="date" />
+          <input id="birthdate" name="birthdate" type="date" required />
         </div>
 
         <button type="submit" class="basic__button">Descobrir idade</button>
       </form>
     </section>
     <section class="hero__box">
-      dsafadsfasd
+      <div id="age_result" class="basic__form invisible">
+        <h3>Os dados inseridos foram</h3>
+
+        <div class="basic__input modifier__without-border">
+          <p>Nome: </p>
+          <p id="showName"></p>
+        </div>
+
+        <div class="basic__input modifier__without-border">
+          <p>Cpf: </p>
+          <p id="showCpf"></p>
+        </div>
+
+        <div class="basic__input modifier__without-border">
+          <p>Data de nascimento: </p>
+          <p id="showBirthdate"></p>
+        </div>
+        <h4>E ao calcularmos descobrimos que a sua idade é:</h4>
+
+        <div class="basic__input modifier__without-border">
+          <p>Idade: </p>
+          <p id="showAge"></p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="container ground">
     <p>Feito orgulhosamente pelo aluno <strong>João Bispo</strong> do IFSP.</p>
   </footer>
+
+  <script type="text/javascript" src="./scripts/calculateAge.js"></script>
 </body>
 
 </html>

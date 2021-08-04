@@ -98,7 +98,7 @@
 
 .basic__input {
   display: flex;
-  background:  var(--full-white);
+  background:  var(--input-background);
   border: 1px solid var(--secondary);
   min-width: 15rem;
   min-height: 2rem;
@@ -109,8 +109,13 @@
   border-radius: .25rem;
 }
 
-.basic__input label {
-  background: transparent;
+.modifier__without-border {
+  border: none;
+}
+
+.basic__input label, .basic__input p {
+  padding: .2rem;
+  background:  transparent;
 }
 
 .basic__input input {
@@ -129,13 +134,18 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: filter 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .basic__button:hover {
   filter: opacity(95%);
+  color: var(--button-background);
+  background:  var(--primary);
 }
 
+.invisible {
+  display: none;
+}
 
 @media(min-width: 768px) {
   .header {
