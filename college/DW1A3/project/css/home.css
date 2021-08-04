@@ -3,6 +3,7 @@
   /* height: 2rem; */
 
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
@@ -49,7 +50,7 @@
   /* height: calc(100vh - 3.5rem); main - (footer + header) */
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
@@ -58,9 +59,9 @@
 
 .hero__box {
   height: 100%;
-  width: 50%;
 
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -88,8 +89,9 @@
 }
 
 .hero__image {
-  height: 20rem;
-    animation: scalate 1s ease-in-out infinite alternate;
+  height: 10rem;
+  background: transparent;
+  animation: scalate 1s ease-in-out infinite alternate;
 }
 
 .ground {
@@ -104,6 +106,22 @@
   border-top: .15rem solid var(--secondary);
 
   transition: all 300ms ease-in-out;
+}
+
+@media(min-width: 768px) {
+  .header {
+    flex-direction: column;
+    flex-direction: row;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hero__image {
+    height: 20rem;
+  }
 }
 
 @keyframes scalate {
