@@ -5,37 +5,46 @@
   <meta charset="UTF-8">
   <title>Home</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/global.css">
+
+  <link rel="stylesheet" href="./css/home.css">
 </head>
 
-<body>
-  <header>
-    <h1>João Bispo</h1>
+<body class="main_container">
+  <header class="container header">
+    <h1 class="hightlight">João Bispo</h1>
 
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/parquimetro">Parquímetro</a></li>
-        <li><a href="/idade">Descubra sua idade</a></li>
+    <nav class="menu">
+      <ul class="container menu__list">
+        <li class="menu__list-item"><a href="/">Home</a></li>
+        <li class="menu__list-item"><a href="/parquimetro">Parquímetro</a></li>
+        <li class="menu__list-item"><a href="/idade">Descubra sua idade</a></li>
       </ul>
     </nav>
 
   </header>
 
-  <main>
-    <section>
-      <h2>Olá, Bem-vindo a home!</h2>
-      <p>Você sabia que o barril do Chaves é um esconderijo secreto, o Chaves nunca dormiu lá. Dizem que o Chaves
+  <main class="container hero">
+    <section class="hero__box hero__dialog">
+      <h2 class="hero__title">Olá, bem-vindo a home!</h2>
+      <p class="hero__description">Você sabia que o barril do Chaves é um esconderijo secreto? O Chaves nunca dormiu lá.
+        Dizem
+        que o Chaves
         dividia o apartamento com uma velhinha. Nem ela nem o apartamento nunca apareceram no seriado.</p>
     </section>
-    <section>
-      <img src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/01/Chaves-PNG-10.png"
+    <section class="hero__box">
+      <img class="hero__image" src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/01/Chaves-PNG-10.png"
         alt="Chaves no barril" />
     </section>
   </main>
 
-  <footer>
-    <p>Feito orgulhosamente por pelo aluno João Bispo do IFSP.</p>
+  <footer class="container ground">
+    <p>Feito orgulhosamente pelo aluno <strong>João Bispo</strong> do IFSP.</p>
   </footer>
 </body>
 
