@@ -2,7 +2,8 @@
   --primary: #000;
   --secondary: #0e0e00bb;
   --white: #E8EDEB;
-  --box-background: #3772FF;
+  --full-white: #FFF;
+  --button-background: #3772FF;
   --outline: #F5CB5C;
   --hover-detail: #E34A6F;
 }
@@ -23,7 +24,7 @@ html, body {
   width: 100vw;
 }
 
-.main_container {
+#main_container {
   display: flex;
   flex-direction: column;
 
