@@ -1,12 +1,21 @@
 import * as Styled from './styles';
-import P from 'prop-types';
 
 import { Menu } from '../../components/Menu';
 import { Footer } from '../../components/Footer';
 import { GoTop } from '../../components/GoTop';
 
+import { MenuLinkProps } from '../../components/MenuLink';
+import { LogoLinkProps } from '../../components/LogoLink';
+
+export type BaseProps = {
+  links: MenuLinkProps[];
+  footer: string;
+  children: React.ReactNode;
+  logo: LogoLinkProps;
+};
+
 // eslint-disable-next-line no-unused-vars
-export const Base = ({ links = [], logo, footer, children }) => {
+export const Base = ({ links = [], logo, footer, children }: BaseProps) => {
   return (
     <>
       <Menu logo={logo} links={links} />
@@ -17,10 +26,4 @@ export const Base = ({ links = [], logo, footer, children }) => {
       <GoTop />
     </>
   );
-};
-
-Base.propTypes = {
-  ...Menu.propTypes,
-  footer: P.oneOfType([P.node, P.element]),
-  children: P.oneOfType([P.string, P.node, P.element]),
 };

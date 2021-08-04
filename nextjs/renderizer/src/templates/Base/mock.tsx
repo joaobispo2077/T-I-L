@@ -2,6 +2,7 @@ import linksMock from '../../components/NavLinks/mock';
 
 import { GridText } from '../../components/GridText';
 import gridMock from '../../components/GridText/mock';
+import { BaseProps } from '.';
 
 export default {
   links: linksMock,
@@ -18,4 +19,4 @@ export default {
       <GridText {...gridMock} />
     </div>
   ),
-};
+} as BaseProps;
