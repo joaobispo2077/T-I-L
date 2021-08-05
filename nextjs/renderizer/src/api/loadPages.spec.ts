@@ -1,4 +1,4 @@
-const { loadPages } = require('./loadPages');
+import { loadPages } from './loadPages';
 import config from '../config';
 
 describe('load pages', () => {

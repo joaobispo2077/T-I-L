@@ -1,6 +1,7 @@
 import config from '../config';
+import { PageData } from '../templates/Home';
 
-export const loadPages = async (slug = '') => {
+export const loadPages = async (slug = ''): Promise<PageData> => {
   const normalizedSlug = slug
     ? `?slug=${slug.replace(/[^a-z0-9-_]/gi, '')}`
     : '';

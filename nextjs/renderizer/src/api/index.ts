@@ -1,7 +1,8 @@
+import { PageData } from '../templates/Home';
 import { mapMenu } from './mapMenu';
 import { mapSections } from './mapSections';
 
-export const mapData = (data = {}) => {
+export const mapData = (data = {} as any): PageData => {
   const {
     footer_text: footer = '',
     slug = '',

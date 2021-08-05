@@ -15,6 +15,7 @@ export type GridTextProps = {
   grid: GridElementProps[];
   hasBackground?: boolean;
   sectionId: string;
+  component?: string;
 };
 
 export const GridText = ({

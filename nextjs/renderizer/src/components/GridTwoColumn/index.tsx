@@ -14,6 +14,7 @@ export type GridTwoColumnProps = {
   };
   background: boolean;
   sectionId?: string;
+  component?: string;
 };
 
 export const GridTwoColumn = ({

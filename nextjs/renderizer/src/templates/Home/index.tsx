@@ -14,12 +14,11 @@ import config from '../../config';
 import { MenuProps } from '../../components/Menu';
 import { LogoLinkProps } from '../../components/LogoLink';
 
-export type SectionsProps = (
+export type SectionsProps =
   | GridImageProps
   | GridTextProps
   | GridTwoColumnProps
-  | GridContentProps
-) & { component: string };
+  | GridContentProps;
 
 export type PageData = {
   menu: MenuProps & LogoLinkProps;

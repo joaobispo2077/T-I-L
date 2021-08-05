@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { GridContentProps } from '../components/GridContent';
+import { GridImageElementProps, GridImageProps } from '../components/GridImage';
+import { GridTextProps } from '../components/GridText';
+import { GridTwoColumnProps } from '../components/GridTwoColumn';
+
 export const mapperSections = [
   'section.section-content',
   'section.section-grid',
@@ -30,7 +36,7 @@ export const mapSections = (sections = []) => {
   });
 };
 
-export const mapTextGrid = (section = {}) => {
+export const mapTextGrid = (section = {} as any): GridTextProps => {
   const {
     title = '',
     description = '',
@@ -50,7 +56,8 @@ export const mapTextGrid = (section = {}) => {
     grid,
   };
 };
-export const mapImageGrid = (section = {}) => {
+
+export const mapImageGrid = (section = {} as any): GridImageProps => {
   const {
     title = '',
     description = '',
@@ -67,36 +74,25 @@ export const mapImageGrid = (section = {}) => {
     description,
     hasBackground,
     sectionId,
-    grid: grid.map(({ image: { url: src, alternativeText: altText } }) => ({
-      src,
-      altText,
-    })),
+    grid: grid.map(
+      ({
+        image: { url: src, alternativeText: altText },
+      }): GridImageElementProps => ({
+        src,
+        altText,
+      }),
+    ),
   };
 };
 
-export const mapSectionContent = (section = {}) => {
-  const {
-    __component: component = '',
-    title = '',
-    content: html = '',
-    metadata: { background = false, section_id: sectionId = '' } = {},
-  } = section;
-
-  return {
-    component,
-    title,
-    html,
-    background,
-    sectionId,
-  };
-};
-
-export const mapSectionTwoColumns = (section = {}) => {
+export const mapSectionTwoColumns = (
+  section = {} as any,
+): GridTwoColumnProps => {
   const {
     __component: component = '',
     title = '',
     description = '',
-    image: { url: src = '', alternativeText } = {},
+    image: { url: src = '', alternativeText = '' } = {},
     metadata: { background = false, section_id: sectionId = '' } = {},
   } = section;
 
@@ -110,5 +106,22 @@ export const mapSectionTwoColumns = (section = {}) => {
     },
     background: background,
     sectionId: sectionId,
+  };
+};
+
+export const mapSectionContent = (section = {} as any): GridContentProps => {
+  const {
+    __component: component = '',
+    title = '',
+    content: html = '',
+    metadata: { background = false, section_id: sectionId = '' } = false,
+  } = section;
+
+  return {
+    component,
+    title,
+    background,
+    sectionId,
+    html,
   };
 };

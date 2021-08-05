@@ -11,6 +11,7 @@ export type GridContentProps = {
   html: React.ReactNode;
   background?: boolean;
   sectionId: string;
+  component?: string;
 };
 
 export const GridContent = ({
