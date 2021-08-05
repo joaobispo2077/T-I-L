@@ -40,7 +40,7 @@ function Home({ pageData }: HomeProps) {
   return (
     <>
       <Head>
-        <title>{title || config.title}</title>
+        <title>{title || config.site}</title>
 
         <meta name="theme-color" content="#42f48c" />
         <meta name="description" content="Landing page top demais" />

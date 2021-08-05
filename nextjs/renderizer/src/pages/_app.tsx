@@ -3,7 +3,7 @@ import GloblaStyles from '../styles/GloblaStyles';
 import { themes } from '../styles/themes/index';
 import { AppProps } from 'next/app';
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider theme={{ ...themes['default'] }}>
@@ -14,5 +14,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-App.propTypes = AppProps;
 export default App;
