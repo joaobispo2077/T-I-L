@@ -1,12 +1,13 @@
 :root {
   --primary: #000;
   --secondary: #0e0e00bb;
+  --tertiary: #F5CB5C;
   --white: #E8EDEB;
   --full-white: #FFF;
   --button-background: #3772FF;
   --input-background: #E8F0FE;
-  --outline: #F5CB5C;
-  --hover-detail: #E34A6F;
+  --warn: #E34A6F;
+  --success: #4baa3e;
 }
 
 * {

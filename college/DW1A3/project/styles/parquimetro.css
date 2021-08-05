@@ -1,0 +1,29 @@
+.parquimetro_button {
+  background:  var(--tertiary);
+}
+
+.parquimetro_button:hover {
+  color: var(--secondary);
+  background: var(--tertiary);
+  filter: opacity(0.5);
+}
+
+#currency_result {
+  /* justify-content: space-around; */
+}
+
+.not_enough {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--warn);
+}
+
+table, th, td {
+  border: solid 1px var(--secondary);
+  padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    caption-side: bottom;
+}

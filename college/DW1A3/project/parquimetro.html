@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Parquímetro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/template.css">
+
+  <link rel="stylesheet" href="./styles/parquimetro.css">
+</head>
+
+<body id="main_container">
+  <header class="container header">
+    <h1 class="hightlight">João Bispo</h1>
+
+    <nav class="menu">
+      <ul class="container menu__list">
+        <li class="menu__list-item"><a href="./index.html">Home</a></li>
+        <li class="menu__list-item"><a href="./parquimetro.html">Parquímetro</a></li>
+        <li class="menu__list-item"><a href="./idade.html">Descubra sua idade</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main class="container hero">
+
+    <section class="hero__box">
+      <span class="invisible not_enough">Valor insuficiente</span>
+      <table id="parquimetro_table">
+        <thead>
+          <tr>
+            <th>Valor (R$)</th>
+            <th>Tempo (min)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1,0</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>1,75</td>
+            <td>60</td>
+          </tr>
+          <tr>
+            <td>3,0</td>
+            <td>120</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="currency_result" class="basic__form invisible">
+        <h3 class="success">Calculado com sucesso</h3>
+
+        <div class="basic__input modifier__without-border">
+          <p>Troco: </p>
+          <p id="showCash"></p>
+        </div>
+
+        <div class="basic__input modifier__without-border">
+          <p>Placa: </p>
+          <p id="showLicensePlate"></p>
+        </div>
+
+        <div class="basic__input modifier__without-border">
+          <p>Tempo de permanência em minutos: </p>
+          <p id="showTime"></p>
+        </div>
+
+        <div class="basic__input modifier__without-border">
+          <p>Quanto você pagou: </p>
+          <p id="showMoney"></p>
+        </div>
+
+      </div>
+    </section>
+    <section class="hero__box">
+      <form id="form__parquimetro" class="basic__form">
+        <h2>Digite o tempo, placa e insira as moedas</h2>
+        <div for="time" class="basic__input">
+          <label for="time">Tempo em minutos:</label><br>
+          <input id="time" placeholder="Exemplo em minutos: 20" name="time" type="number" min="30" max="120"
+            required /><br>
+        </div>
+
+        <div class="basic__input">
+          <label for="licensePlate">Placa:</label><br>
+          <input id="licensePlate" placeholder="Exemplo: CMR1134" name="licensePlate" type="text" minlength="7"
+            maxlength="7" required /><br>
+        </div>
+
+        <div class="basic__input">
+          <label for="value">Moedas:</label><br>
+          <input id="value" placeholder="3,00" name="value" type="number" min="0.00" max="10000.00" step="0.01"
+            required />
+        </div>
+
+        <button type=" submit" class="basic__button parquimetro_button">Calcular</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container ground">
+    <p>Feito orgulhosamente pelo aluno <strong>João Bispo</strong> do IFSP.</p>
+  </footer>
+
+  <script type="text/javascript" src="./scripts/calculateCurrency.js"></script>
+</body>
+
+</html>
