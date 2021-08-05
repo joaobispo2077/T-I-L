@@ -55,6 +55,7 @@ const showPersonIntoScreen = (person) => {
   cpf.innerHTML = person.cpf;
   age.innerHTML = person.idade;
 
+  document.querySelector('.hero__image').classList.add('invisible');
   document.getElementById('age_result').classList.remove('invisible');
 }
 

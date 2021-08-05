@@ -1,3 +1,7 @@
 #age_result .basic__input {
   background: var(--full-white);
 }
+
+.hero__image {
+  display: visible;
+}
