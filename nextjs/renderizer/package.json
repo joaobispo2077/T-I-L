@@ -10,7 +10,14 @@
     "export": "next export",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "jest",
+    "lint:fix": "eslint ./src/**/* --fix --max-warnings=0"
+  },
+  "lint-staged": {
+    "src/**/*.ts{,x}": [
+      "yarn eslint --fix --max-warnings=0",
+      "yarn test --findRelatedTests --bail"
+    ]
   },
   "dependencies": {
     "@styled-icons/material-outlined": "^10.34.0",
@@ -41,8 +48,10 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "jest-styled-components": "^7.0.5",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   }

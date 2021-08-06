@@ -1,5 +1,4 @@
 import * as Styled from './styles';
-import P from 'prop-types';
 
 import { SectionBackground } from '../SectionBackground';
 import { Heading } from '../Heading';
