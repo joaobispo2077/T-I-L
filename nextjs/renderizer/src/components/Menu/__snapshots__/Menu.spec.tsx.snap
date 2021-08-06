@@ -245,6 +245,7 @@ exports[`<Menu/> should match with snapshot 1`] = `
           <a
             class="c8"
             href="#target"
+            target="_self"
           >
             Logo
           </a>
