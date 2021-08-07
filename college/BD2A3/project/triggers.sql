@@ -1,13 +1,13 @@
-DELIMITER $
-CREATE TRIGGER tr_atualiza_status_tarefa_quando_cria_lembrete
-AFTER INSERT ON lembrete_tarefa
-FOR EACH ROW
-BEGIN
-  UPDATE tarefa
-  SET tarefa.status = 'EM ANDAMENTO'
-  WHERE tarefa.id = NEW.tarefa_id;
-END
-$
+-- DELIMITER $
+-- CREATE TRIGGER tr_atualiza_status_tarefa_quando_cria_lembrete
+-- AFTER INSERT ON lembrete_tarefa
+-- FOR EACH ROW
+-- BEGIN
+--   UPDATE tarefa
+--   SET tarefa.status = 'EM ANDAMENTO'
+--   WHERE tarefa.id = NEW.tarefa_id;
+-- END
+-- $
 
 DELIMITER $
 CREATE TRIGGER tr_impede_de_criar_tag_repetida
@@ -85,3 +85,35 @@ BEGIN
   END IF;
 END
 $
+
+-- TESTES DE TRIGGERS
+-- tr_impede_de_criar_subtarefa_repetido
+-- INSERT INTO subtarefa
+--  (descricao, usuario_id)
+-- VALUES
+--   ('Preparar fantasias', 5);
+
+-- tr_impede_de_criar_lembrete_tarefa_repetido
+-- INSERT INTO lembrete_tarefa (
+--   usuario_id, tarefa_id, lembrete_id
+-- )
+-- VALUES
+--   (2, 8, 2);
+
+-- tr_impede_de_criar_lembrete_repetido
+-- INSERT INTO lembrete (data, hora, usuario_id)
+-- VALUES
+--   ('2021-07-29', '08:30', 2);
+
+-- tr_muda_para_uppercase_ao_atualizar_tag
+-- UPDATE tag
+-- SET tag.nome = 'entreterimento'
+-- WHERE tag.id = 5;
+
+-- tr_adiciona_uppercase_ao_adicionar_tag
+-- INSERT INTO tag ( nome, cor )
+-- VALUES ( 'inglês', 'ROSA CHOQUE' );
+
+-- tr_impede_de_criar_tag_repetida
+-- INSERT INTO tag ( nome, cor )
+-- VALUES ( 'INGLÊS', 'ROSA CHOQUE' );
