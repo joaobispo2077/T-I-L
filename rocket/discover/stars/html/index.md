@@ -110,3 +110,159 @@ alguns conteudos em outras páginas
   <dd>Marcação de texto</dd>
 </dl>
 ```
+
+-------
+
+## Representando códigos
+
+```html
+<pre>
+  <code>
+    document
+      .querySelect('body');
+  </code>
+</pre>
+```
+
+----------
+
+## Elementos genéricos
+
+```html
+<div>
+  A handbook...
+</div>
+<span>Other text</span>
+```
+
+-------------
+
+## Links
+
+- Atributos:
+  - `href`: define o link
+    - url completa
+    - url relativa
+    - fragmento
+    - email
+    - telefone
+    - etc
+  - `target`: define o tipo de ação do link
+    - `_blank`: abrir nova janela
+    - `_self`: abrir no mesmo frame
+    - `_parent`: abrir no frame pai
+    - `_top`: abrir no frame top
+  - `download`: define o nome do arquivo a ser salvo
+
+```html
+<p>Encontre-me</p>
+<ul>
+  <li><a href="http://google.com" target="_blank">Google</a></li>
+  <li><a href="mailto:email@example.com">Email</a></li>
+  <li><a href="tel:+1.123.123.123">Telefone</a></li>
+</ul>
+
+<p>Saiba mais</p>
+<ul>
+  <li><a href="#about">Sobre mim</a></li>
+  <li><a href="#history">História</a></li>
+  <li><a href="#works">Trabalhos</a></li>
+</ul>
+
+```
+
+---------------------
+
+## Tabelas
+
+- Prós:
+  - Visualização dos dados via linahs e colunas
+  - Boa acessibilidade para leitores de tela
+- Contras:
+  - Pouco flexível
+  - Precisa de estilização para melhor visualização
+- Não usar:
+  - Para criar seu layout
+
+Tabela simples:
+
+```html
+<table>
+
+  <caption>Pessoas por idade</caption>
+
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Idade</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>José</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>Ana</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>2 Pessoas</td>
+    </tr>
+  </tfoot>
+
+</table>
+```
+
+Tabela complexa:
+
+```html
+<table>
+
+  <caption>Produzidos X vendidos por loja</caption>
+
+  <colgroup>
+    <col />
+    <col span="2" style="background-color: yellow" />
+    <col span="2" style="background-color: orange" />
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th rowspan="2"></th>
+      <th colspan="2" scope="colgroup">Loja 1</th>
+      <th colspan="2" scope="colgroup">Loja 2</th>
+    </tr>
+    <tr>
+      <th scope="col">Produzidos</th>
+      <th scope="col">Vendidos</th>
+      <th scope="col">Produzidos</th>
+      <th scope="col">Vendidos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td scope="row">Colheres</td>
+      <td>50</td>
+      <td>20</td>
+      <td>20</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td scope="row">Mouse</td>
+      <td>200</td>
+      <td>150</td>
+      <td>1000</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+
+
+</table>
+```
