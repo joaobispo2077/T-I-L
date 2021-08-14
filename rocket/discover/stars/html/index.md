@@ -266,3 +266,59 @@ Tabela complexa:
 
 </table>
 ```
+
+--------------
+
+## Cabeçalho
+
+As tags meta auxiliam no complemento de informações/configurações adicionais na página, como:
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+</head>
+```
+
+Para colocar logo/ícone de favorito:
+
+```html
+<head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+</head>
+```
+
+Metas que incrementam o SEO
+
+```html
+<head>
+  <meta name="author" content="João Bispo">
+  <meta name="description" content="Compilado de projetos">
+
+  <meta name="robots" content="nofollow">
+  <!-- index, follow, noindex, nofollow -->
+</head>
+```
+
+Metas social
+
+```html
+<head>
+  <!-- OpenGraph: facebook -->
+  <meta property="og:image" content="./image.png">
+  <meta property="og:description" content="Texto especial para aparecer">
+  <meta property="og:title" content="Titulo da pagina no facebook">
+
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@joaobispo">
+  <meta name="twitter:creator" content="@joaobispo">
+  <meta name="twitter:title" content="Titulo da pagina no twitter">
+  <meta name="twitter:description" content="Texto especial para aparecer">
+  <meta name="twitter:image" content="./image.png">
+
+</head>
+```
