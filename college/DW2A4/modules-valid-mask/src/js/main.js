@@ -6,6 +6,7 @@ const $$ = document.querySelectorAll.bind(document);
 const maskByElementId = {
   'cpf': Masks.formatCpf,
   'dt_nasc': Masks.formatDate,
+  'fone': Masks.formatPhone,
 };
 
 const inputNodeList = $$('input');
