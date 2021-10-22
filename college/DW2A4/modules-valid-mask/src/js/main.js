@@ -7,6 +7,7 @@ const maskByElementId = {
   'cpf': Masks.formatCpf,
   'dt_nasc': Masks.formatDate,
   'fone': Masks.formatPhone,
+  'cep': Masks.formatCep,
 };
 
 const inputNodeList = $$('input');

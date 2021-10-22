@@ -26,6 +26,13 @@ class Masks {
       .replace(/(-\d{4})\d+?$/, '$1')
   }
 
+  static formatCep(cep) {
+    return cep
+      .replace(/\D+/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1')
+  }
+
 }
 
 export { Masks };
