@@ -4,8 +4,8 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const maskByElementId = {
-  'cpf': Masks.fixCpf,
-
+  'cpf': Masks.formatCpf,
+  'dt_nasc': Masks.formatDate,
 };
 
 const inputNodeList = $$('input');
