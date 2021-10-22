@@ -1,5 +1,5 @@
 class Person {
-  name = '';
+  nome = '';
   cpf = '';
   dt_nasc = '';
   email = '';

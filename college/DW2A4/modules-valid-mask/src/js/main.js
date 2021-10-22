@@ -16,23 +16,24 @@ const formElement = $('form');
 const inputNodeList = $$('input');
 const inputList = Array.from(inputNodeList);
 
-const person = new Person();
 
 inputList.forEach(input => {
   input.addEventListener('input', ($event) => {
-    person[input.id] = $event.target.value;
-
     const applyMaskFix = maskByElementId[input.id];
     if (!applyMaskFix) return;
 
     $event.target.value = applyMaskFix($event.target.value);
-    person[input.id] = $event.target.value;
   });
 });
 
 
 formElement.addEventListener('submit', ($event) => {
   $event.preventDefault();
+
+  const person = new Person();
+  inputList.forEach(input => {
+    person[input.id] = input.value;
+  });
 
   console.log('sent person to api...', person);
 });
