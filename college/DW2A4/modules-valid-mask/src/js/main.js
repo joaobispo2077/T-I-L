@@ -1,15 +1,23 @@
-// const $ = document.querySelector.bind(document);
-// const $$ = document.querySelectorAll.bind(document);
+import { Masks } from "./modules/Masks.js";
 
-// const inputNodeList = $$('input');
-// const inputList = Array.from(inputNodeList);
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
-// console.log(inputList);
+const maskByElementId = {
+  'cpf': Masks.fixCpf,
 
-// inputList.forEach(input => {
-//   input.addEventListener('input', () => {
-//     $event.target.value = ;
-//     console.log(input.id, input.value);
-//   });
+};
 
-// });
+const inputNodeList = $$('input');
+const inputList = Array.from(inputNodeList);
+
+
+inputList.forEach(input => {
+  input.addEventListener('input', ($event) => {
+    console.log(input.id, input.value);
+    const applyMaskFix = maskByElementId[input.id];
+    if (!applyMaskFix) return;
+
+    $event.target.value = applyMaskFix($event.target.value);
+  });
+});
