@@ -7,4 +7,4 @@ class Person {
   cep = '';
 }
 
-export { Person }
+export { Person };
