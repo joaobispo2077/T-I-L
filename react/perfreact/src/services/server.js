@@ -5,5 +5,6 @@ module.exports = () => {
     price: current + 1 * 2.5,
   }));
 
-  return mockProducts;
+  const data = { products: mockProducts };
+  return data;
 };
