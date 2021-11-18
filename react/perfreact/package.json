@@ -17,6 +17,7 @@
     "@types/react": "17.0.35",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
+    "json-server": "^0.17.0",
     "typescript": "4.4.4"
   }
 }
