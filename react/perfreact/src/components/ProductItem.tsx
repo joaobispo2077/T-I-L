@@ -8,6 +8,7 @@ type Product = {
 
 type ProductItemProps = {
   product: Product;
+  onAddToWishlist: (id: number) => void;
 };
 
 const ProductItemComp: React.FC<ProductItemProps> = ({ product }) => {

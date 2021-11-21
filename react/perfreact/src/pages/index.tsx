@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { FormEvent, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 import { SearchResult } from '../components/SearchResult';
 
 type Product = {
@@ -12,6 +12,11 @@ type Product = {
 const Home: NextPage = () => {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState<Product[]>([]);
+
+  const addToWishlist = useCallback( (id: number) => {
+    console.log(id);
+  }, []);
+
 
   const handleSearch = async (formEvent: FormEvent) => {
     formEvent.preventDefault();
@@ -34,7 +39,7 @@ const Home: NextPage = () => {
 
         <button type="submit">Search</button>
       </form>
-      <SearchResult results={results} />
+      <SearchResult results={results} onAddToWishlist={addToWishlist} />
     </div>
   )
 }

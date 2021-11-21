@@ -9,16 +9,17 @@ type Product = {
 
 type SearchResultProps = {
   results: Product[];
+  onAddToWishlist: (id: number) => void;
 };
 
-export function SearchResult({ results }: SearchResultProps) {
+export function SearchResult({ results, onAddToWishlist }: SearchResultProps) {
   const quantity = useMemo(() => results.length, [results]);
 
   return (
     <div>
       <h2>Quantidade: {quantity}</h2>
       {results.map((product) => (
-        <ProductItem key={product.id} product={product}/>
+        <ProductItem key={product.id} product={product} onAddToWishlist={onAddToWishlist}/>
       ))}
     </div>
   );
