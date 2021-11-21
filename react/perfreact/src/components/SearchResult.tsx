@@ -5,6 +5,7 @@ type Product = {
   id: number;
   title: string;
   price: number;
+  priceFormatted: string;
 };
 
 type SearchResultProps = {

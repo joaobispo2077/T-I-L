@@ -4,6 +4,7 @@ type Product = {
   id: number;
   title: string;
   price: number;
+  priceFormatted: string;
 };
 
 type ProductItemProps = {
@@ -14,7 +15,7 @@ type ProductItemProps = {
 const ProductItemComp: React.FC<ProductItemProps> = ({ product }) => {
   return (
     <div>
-      {product.title} - <strong>{product.price}</strong>
+      {product.title} - <strong>{product.priceFormatted}</strong>
     </div>
   );
 };
