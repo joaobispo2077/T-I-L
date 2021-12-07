@@ -1,10 +1,8 @@
 import { Card } from "../components/Card";
-import { Layout } from "../components/Layout";
-
 
 export default function Home() {
   return (
-    <Layout>
+    <div>
       <h1 className="text-4xl mt-10 leading-none font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl md:mt-24">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum aperiam voluptate rem voluptatum, distinctio nisi possimus adipisci deserunt voluptates. Pariatur ad sint asperiores, fuga ex consectetur minus dolorum deleniti fugiat.
       </h1>
@@ -27,6 +25,6 @@ export default function Home() {
           layoutId="framermotion-logo"
         />
       </div>
-    </Layout>
+    </div>
     );
 }
