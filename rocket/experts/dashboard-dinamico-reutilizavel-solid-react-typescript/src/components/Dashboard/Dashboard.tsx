@@ -1,13 +1,16 @@
 import React from 'react';
-import {content} from 'src/components/Dashboard-initial/dashboard.data';
-import {Widget} from 'src/components/Dashboard-initial/Widget';
+import { widgets } from 'src/mocks/dashboard.data';
+import { Widget } from 'src/components/Dashboard/Widget';
 
 import './dashboard.scss';
 
 export const Dashboard = () => {
 	return (
 		<div className="dashboard">
-			<Widget
+      {widgets.map((widget: any, index) => (
+        <Widget key={index} content={widget} 	className="dashboard__widget" />
+      ))}
+			{/* <Widget
 				data={content.widgets[2]}
 				type="COMPARISON"
 				position="FULL"
@@ -27,7 +30,7 @@ export const Dashboard = () => {
 				position="QUARTER"
 				template="BLOCK"
 				className="dashboard__widget dashboard__widget--quarter"
-			/>
+			/> */}
 		</div>
 	);
 };

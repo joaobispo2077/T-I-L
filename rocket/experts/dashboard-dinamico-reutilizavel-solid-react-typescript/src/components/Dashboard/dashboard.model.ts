@@ -16,6 +16,19 @@ export interface Content {
   items?: List[] | BarChart[];
 }
 
-export interface DataFormat {
-  widgets: Content[];
+// export interface Configuration {
+//   type: WidgetType;
+//   postion: WidgetPosition;
+//   template: WidgetTemplate;
+// }
+
+export interface Configuration {
+  type: any;
+  position: any;
+  template: any;
+}
+
+export interface Widget {
+  config: Configuration;
+  data: Content;
 }

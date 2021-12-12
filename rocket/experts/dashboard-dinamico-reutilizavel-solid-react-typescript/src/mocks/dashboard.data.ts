@@ -1,6 +1,6 @@
-// import { Widgets } from "src/components/Dashboard/dashboard.model";
+import { Widget } from "src/components/Dashboard/dashboard.model";
 
-export const widgets = [
+export const widgets: Widget[] = [
   {
     config: {
       type: "COMPARISON",
