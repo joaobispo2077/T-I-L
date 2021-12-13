@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 // @ts-ignore
 import {Chart, Layer, Bars, Ticks} from 'rumble-charts';
-import {Content} from 'src/components/Dashboard-initial/dashboard.model';
+import { templateComponents } from 'src/components/Dashboard/dashboard.config';
 
 export interface WidgetProps {
 	content: any;
@@ -9,8 +9,9 @@ export interface WidgetProps {
 }
 
 export const Widget = ({content, className}: WidgetProps) => {
-  const WidgetComponent = templateComponent[content.config.template];
+  const WidgetComponent = templateComponents[content.config.template];
   const customClass = className && `${className}`;
+  const widgetPosition = content.config.position.toLowerCase();
 	// const showContent = (): ReactNode => {
 	// 	if (template === 'LIST') {
 	// 		return (
@@ -53,7 +54,7 @@ export const Widget = ({content, className}: WidgetProps) => {
 	// };
 
 	return (
-		<div className={`${customClass} widget`}>
+		<div className={`${customClass} widget widget--${widgetPosition}`}>
 			{/* <h2 className="widget__title">{data.title}</h2> */}
       <WidgetComponent content={content} />
 		</div>

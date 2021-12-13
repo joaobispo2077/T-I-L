@@ -32,3 +32,10 @@ export interface Widget {
   config: Configuration;
   data: Content;
 }
+
+export interface WidgetComponentProps {
+  content: Widget;
+}
+export interface WidgetTemplateConfig {
+  [template: string]: React.FC<WidgetComponentProps>;
+}

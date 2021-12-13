@@ -2,7 +2,7 @@ import React from 'react';
 import { widgets } from 'src/mocks/dashboard.data';
 import { Widget } from 'src/components/Dashboard/Widget';
 
-import './dashboard.scss';
+import './styles/main.scss';
 
 export const Dashboard = () => {
 	return (

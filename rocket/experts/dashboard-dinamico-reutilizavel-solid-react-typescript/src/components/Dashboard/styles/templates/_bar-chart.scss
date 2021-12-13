@@ -1,0 +1,19 @@
+.widget__chart {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .widget__title {
+    font-size: 1.5rem;
+  }
+
+  .chart__bar {
+    border-radius: 15px;
+  }
+
+  .widget__info {
+    text-align: center;
+    flex-basis: 100%;
+  }
+}
