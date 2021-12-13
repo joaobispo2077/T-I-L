@@ -1,3 +1,5 @@
+import { WidgetPosition, WidgetTemplate, WidgetType } from "./dashboard.config";
+
 export interface List {
   title: string;
   value: string;
@@ -16,16 +18,10 @@ export interface Content {
   items?: List[] | BarChart[];
 }
 
-// export interface Configuration {
-//   type: WidgetType;
-//   postion: WidgetPosition;
-//   template: WidgetTemplate;
-// }
-
 export interface Configuration {
-  type: any;
-  position: any;
-  template: any;
+  type: WidgetType;
+  position: WidgetPosition;
+  template: WidgetTemplate;
 }
 
 export interface Widget {
