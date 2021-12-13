@@ -1,4 +1,4 @@
-&__widget {
+.widget {
   margin: 0.5rem;
   border-radius: 3px;
   padding: 1rem;
@@ -9,7 +9,7 @@
   }
 
   &--half {
-    flex-basis: 43%;
+    flex-basis: 40%;
     background-color: #85c1e9;
   }
 

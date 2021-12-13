@@ -54,7 +54,7 @@ export const widgets: Widget[] = [
   {
     config: {
       type: "COMPARISON",
-      position: "QUARTER",
+      position: "HALF",
       template: "BLOCK",
     },
     data: {
