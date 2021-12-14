@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import { UserForm } from "./components/UserForm";
 import { UserFallback } from "./components/UserFallback";
 import { UserView } from "./components/UserView";
@@ -11,30 +11,30 @@ const REQUEST_STATUS = {
   REJECTED: 'rejected'
 }
 
-const userReducer = (state, action) => {
+const asyncReducer = (state, action) => {
   switch (action.type) {
     case REQUEST_STATUS.IDLE:
       return {
         status: REQUEST_STATUS.IDLE,
-        user: null,
+        data: null,
         error: null
       };
     case REQUEST_STATUS.PENDING:
       return {
         status: REQUEST_STATUS.PENDING,
-        user: null,
+        data: null,
         error: null
       };
     case REQUEST_STATUS.RESOLVED:
       return {
         status: REQUEST_STATUS.RESOLVED,
-        user: action.user,
+        data: action.data,
         error: null
       };
     case REQUEST_STATUS.REJECTED:
       return {
         status: REQUEST_STATUS.REJECTED,
-        user: null,
+        data: null,
         error: action.error
       };
     default:
@@ -42,8 +42,18 @@ const userReducer = (state, action) => {
   }
 }
 
-const useAsync = () => {
+const useAsync = (initialState) => {
 
+  const [state, dispatch] = useReducer(asyncReducer, initialState)
+
+  const run = useCallback((promise) => {
+    dispatch({ type: REQUEST_STATUS.PENDING });
+    promise
+      .then((data) => dispatch({ type: REQUEST_STATUS.RESOLVED, data }))
+      .catch((err) => dispatch({ type: REQUEST_STATUS.REJECTED, error: err }));
+  }, []);
+
+  return { ...state, run }
 }
 
 const UserInfo = ({ userName }) => {
@@ -53,23 +63,14 @@ const UserInfo = ({ userName }) => {
     error: null
   };
 
-  const [state, dispatch] = useReducer(userReducer, initialState)
-
+  const { status, error, data: user, run } = useAsync(initialState);
 
   useEffect(() => {
     if (!userName) return;
-    dispatch({ type: REQUEST_STATUS.PENDING });
+    return run(fetchGithubUser(userName));
 
-    fetchGithubUser(userName)
-      .then((user) => {
-        dispatch({ type: REQUEST_STATUS.RESOLVED, user });
-      })
-      .catch((err) => {
-        dispatch({ type: REQUEST_STATUS.REJECTED, error: err });
-      });
-  }, [userName]);
+  }, [userName, run]);
 
-  const { status, user, error } = state;
   switch (status) {
     case REQUEST_STATUS.IDLE:
       return <h1>Submit user</h1>;
@@ -85,7 +86,7 @@ const UserInfo = ({ userName }) => {
         </div>
       );
     default:
-      throw new Error(`Unknown status: ${state.status}`);
+      throw new Error(`Unknown status: ${status}`);
 
   }
 };
