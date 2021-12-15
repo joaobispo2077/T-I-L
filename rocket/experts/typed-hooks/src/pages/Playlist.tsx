@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { AudioPlayerProvider } from "react-use-audio-player";
 import { RequestStatus, useFetch } from "../hooks/useFetch";
-import { responseDemo } from "../mock";
 import { axiosOptions, tracksUrl } from "../service";
-
+import Player from '../components/Player';
 export interface Track {
   uri:               string;
   index:             number;
@@ -23,8 +23,9 @@ export interface Track {
 
 
 function Playlist() {
+  const {status,data, error } = useFetch<Track[]>(tracksUrl, axiosOptions);
+  const [currentTrack, setCurrentTrack] = useState<Track>();
 
-  const {status,data, error } = useFetch<Track[]>(tracksUrl, axiosOptions)
 
   if (status === RequestStatus.fetching) {
     return <div>loading</div>;
@@ -40,7 +41,7 @@ console.log(data)
         <ul className="track-list">
           {data?.map((track) => (
             <li key={`track-${track.id}`} className="row">
-              <button className="btn" onClick={() => console.log(track)}>
+              <button className="btn" onClick={() => setCurrentTrack(track)}>
                 <div className="album">
                   <img
                     className="album__cover"
@@ -63,6 +64,13 @@ console.log(data)
           ))}
         </ul>
       </div>
+      <AudioPlayerProvider>
+        <Player
+          title={currentTrack?.title}
+          artWork={currentTrack?.artwork_url}
+          file={currentTrack?.stream_url}
+        />
+      </AudioPlayerProvider>
     </div>
   );
 }
