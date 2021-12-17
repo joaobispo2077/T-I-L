@@ -4,7 +4,7 @@
 	"description": "Rocketseat - ExpertsClub: Melhorando Logs do Node.js com TypeScript, Pino.js e LogDNA",
 	"main": "dist/app.js",
 	"scripts": {
-		"start:local": "ts-node src/app.ts"
+		"start:local": "ts-node src/app.ts | pino-pretty"
 	},
 	"engines": {
 		"node": "16.13.1",
@@ -30,6 +30,7 @@
 	"homepage": "https://github.com/example/melhorando-logs-do-nodejs-com-typescript-pinojs-logdna-2021-09-13#readme",
 	"devDependencies": {
 		"@types/node": "^16.9.1",
+		"pino-pretty": "^7.3.0",
 		"ts-node": "^10.2.1",
 		"typescript": "^4.4.3"
 	},
