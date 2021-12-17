@@ -1,0 +1,36 @@
+{
+	"name": "tratamento-domain-exceptions-js-ts-2021-06-15",
+	"version": "1.0.0",
+	"description": "Rocketseat - ExpertsClub: Técnicas de tratamento de exceções de domínio em JavaScript com TypeScript",
+	"main": "index.js",
+	"scripts": {
+		"compile": "tsc",
+		"start:local": "ts-node app.ts",
+		"start:watch": "nodemon"
+	},
+	"engines": {
+		"node": "16.13.1",
+		"npm": "8.1.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/example/tratamento-domain-exceptions-js-ts-2021-06-15.git"
+	},
+	"keywords": [
+		"exceptions",
+		"error",
+		"handling",
+		"rocketseat"
+	],
+	"author": "João",
+	"bugs": {
+		"url": "https://github.com/example/tratamento-domain-exceptions-js-ts-2021-06-15/issues"
+	},
+	"homepage": "https://github.com/example/tratamento-domain-exceptions-js-ts-2021-06-15#readme",
+	"devDependencies": {
+		"@types/node": "^15.12.2",
+		"nodemon": "^2.0.7",
+		"ts-node": "^10.0.0",
+		"typescript": "^4.3.2"
+	}
+}
