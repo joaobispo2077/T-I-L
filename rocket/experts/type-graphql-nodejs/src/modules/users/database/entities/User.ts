@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 import bcrypt from "bcryptjs";
 import { Field, ID, ObjectType } from "type-graphql";
+import { Pet } from "../../../pets/database/entities/Pet";
 
 @Entity("users")
 @ObjectType()
@@ -31,6 +32,9 @@ export class User extends BaseEntity {
 
   @Column()
   password_hash: string;
+
+  @Field(() => [Pet])
+  pets: Pet[];
 
   @BeforeInsert()
   private async hashPassword() {
