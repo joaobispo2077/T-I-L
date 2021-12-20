@@ -1,8 +1,13 @@
 const jwt = require('jsonwebtoken')
 
-const sign = ({ id, role }) => jwt.sign({ id, role }, 'secret')
+const sign = (payload) => jwt.sign(payload, 'secret')
 
-const verify = _ => new Promise((resolve, reject) => resolve(true))
+const verify = (token) =>
+  new Promise((resolve, reject) =>
+    jwt.verify(token, 'secret', (error, data) =>
+      error ? reject(error) : resolve(data)
+    )
+  )
 
 module.exports = {
   sign,

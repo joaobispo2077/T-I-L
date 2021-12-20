@@ -1,7 +1,7 @@
 {
   "name": "jwt-rs",
   "version": "1.0.0",
-  "description": "Repositório do Workshop de JWT para a Rocketseat",
+  "description": "JWT",
   "main": "index.js",
   "scripts": {
     "start": "npm run sequelize:migrate && node src/index.js",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/askmon/jwt-rocketseat.git"
+    "url": "git+https://github.com/example/jwt.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/askmon/jwt-rocketseat/issues"
+    "url": "https://github.com/example/jwt/issues"
   },
-  "homepage": "https://github.com/askmon/jwt-rocketseat#readme",
+  "homepage": "https://github.com/example/jwt#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cross-env": "^7.0.3",
