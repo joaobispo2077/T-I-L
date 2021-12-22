@@ -1,6 +1,6 @@
 const users = require('./user')
 const crypto = require('./crypto')
-const token = require('./token')
+const tokenService = require('./token')
 
 // illustration purposes only
 // for production-ready code, use error codes/types and a catalog (maps codes -> responses)
@@ -27,7 +27,14 @@ const authenticate = async ({ email, password }) => {
     role: user.dataValues.role,
   }
 
-  return token.sign(tokenPayload)
+  const accessToken = tokenService.sign(tokenPayload)
+  const { refreshToken, refreshTokenExpiration } = await tokenService.createRefreshToken(user.id)
+
+  return {
+    accessToken,
+    refreshToken,
+    refreshTokenExpiration,
+  }
 }
 
 module.exports = {

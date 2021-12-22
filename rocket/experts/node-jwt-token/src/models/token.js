@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.STRING,
     token: DataTypes.STRING,
     valid: DataTypes.BOOLEAN,
-    expires: DataTypes.DATE,
+    expiresAt: DataTypes.DATE,
   }
 
   const modelOptions = {
