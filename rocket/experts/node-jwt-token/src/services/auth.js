@@ -65,7 +65,24 @@ const refreshToken = async (previousRefreshToken) => {
   return authFailed()
 }
 
+const logout = async (previousRefreshToken, allDevices) => {
+  const refreshToken = await tokenService.getRefreshToken(previousRefreshToken)
+
+  if (isRefreshTokenValid(refreshToken)) {
+    await tokenService.invalidateRefreshToken(previousRefreshToken)
+
+    if (allDevices) {
+      await tokenService.invalidateAllRefreshTokens(refreshToken.user_id)
+    }
+
+    return
+  }
+
+  return authFailed()
+}
+
 module.exports = {
   authenticate,
   refreshToken,
+  logout,
 }

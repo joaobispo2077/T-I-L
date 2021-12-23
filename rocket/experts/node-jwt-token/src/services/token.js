@@ -47,10 +47,20 @@ const invalidateRefreshToken = async (refreshToken) => {
   })
 }
 
+const invalidateAllRefreshTokens = async (userId) => {
+  return Token.update({ valid: false }, {
+    where: {
+      user_id: userId,
+      valid: true,
+    },
+  })
+}
+
 module.exports = {
   sign,
   verify,
   createRefreshToken,
   getRefreshToken,
   invalidateRefreshToken,
+  invalidateAllRefreshTokens,
 }
