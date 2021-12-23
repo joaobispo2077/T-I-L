@@ -33,7 +33,24 @@ const refreshToken = async ctx => {
   }
 }
 
+const logout = async ctx => {
+  const { allDevices } = ctx.request.body
+
+  const cookieRefreshToken = ctx.cookies.get('refreshToken')
+
+  await auth.logout(cookieRefreshToken, allDevices)
+
+  ctx.cookies.set('refreshToken', null, {
+    httpOnly: true,
+    expires: new Date(0),
+  })
+
+  ctx.body = {
+  }
+}
+
 module.exports = {
   authenticate,
   refreshToken,
+  logout,
 }
