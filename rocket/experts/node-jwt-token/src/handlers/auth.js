@@ -18,6 +18,22 @@ const authenticate = async ctx => {
   }
 }
 
+const refreshToken = async ctx => {
+  const cookieRefreshToken = ctx.cookies.get('refreshToken')
+  const { accessToken, refreshToken, refreshTokenExpiration } = await auth.refreshToken(
+    cookieRefreshToken)
+
+  ctx.cookies.set('refreshToken', refreshToken, {
+    httpOnly: true,
+    expires: refreshTokenExpiration,
+  })
+
+  ctx.body = {
+    accessToken,
+  }
+}
+
 module.exports = {
   authenticate,
+  refreshToken,
 }
