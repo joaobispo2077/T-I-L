@@ -31,8 +31,26 @@ const createRefreshToken = async (userId) => {
   return { refreshToken, refreshTokenExpiration }
 }
 
+const getRefreshToken = async (refreshToken) => {
+  return Token.findOne({
+    where: {
+      token: refreshToken,
+    },
+  })
+}
+
+const invalidateRefreshToken = async (refreshToken) => {
+  return Token.update({ valid: false }, {
+    where: {
+      token: refreshToken,
+    },
+  })
+}
+
 module.exports = {
   sign,
   verify,
   createRefreshToken,
+  getRefreshToken,
+  invalidateRefreshToken,
 }
