@@ -20,7 +20,10 @@ const verify = token => new Promise((resolve, reject) =>
   )
 )
 
+const decode = token => jwt.decode(token)
+
 module.exports = {
   sign,
   verify,
+  decode,
 }
