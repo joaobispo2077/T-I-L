@@ -21,7 +21,7 @@ const parseFilelineToArtefactList = line => {
 
 const resolveOF = async () => {
   const rootDirectory = resolve(__dirname);
-  const sourceFile = resolve(rootDirectory, '..', 'data', 'of.txt');
+  const sourceFile = resolve(rootDirectory, '..', '..', 'data', 'of.txt');
 
   const fileData = await readFileAsync(sourceFile, 'utf8');
 
@@ -32,7 +32,7 @@ const resolveOF = async () => {
 
   const newFileData = artefactList.join('\n');
 
-  const targetFile = resolve(rootDirectory, '..', 'data', 'of_resolved.txt');
+  const targetFile = resolve(rootDirectory, '..', '..', 'data', 'of_resolved.txt');
   await writeFileAsync(targetFile, newFileData);
 
   console.info("\n===output===\n");
@@ -40,4 +40,6 @@ const resolveOF = async () => {
 
 }
 
-resolveOF();
+module.exports = {
+  resolveOF
+}
