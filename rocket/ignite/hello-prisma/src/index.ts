@@ -30,5 +30,23 @@ router.post("/courses", async (req, res) => {
   return res.status(201).json(createdCourse);
 });
 
+router.get("/courses", async (req, res) => {
+  const { offset = 0, limit = 10 } = req.query;
+
+  const paginate = {
+    skip: Number(offset),
+    take: Number(limit),
+  };
+
+  const searchMany = limit ? paginate : undefined;
+
+  const courses = await prisma.courses.findMany(searchMany);
+
+  res.setHeader("X-Total-Count", courses.length);
+  res.setHeader("Access-Control-Expose-Headers", "X-Total-Count");
+
+  return res.status(200).json(courses);
+});
+
 app.use(router);
 app.listen(3000, () => console.log("Server started on port 3000"));
