@@ -1,0 +1,9 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS courses (
+  id UUID NOT NULL DEFAULT uuid_generate_v1(),
+  name VARCHAR(15) NOT NULL,
+  description VARCHAR(255) DEFAULT NULL,
+  duration INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
