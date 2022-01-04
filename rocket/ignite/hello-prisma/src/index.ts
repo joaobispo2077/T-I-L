@@ -17,7 +17,7 @@ const router = Router();
 // courses
 
 router.post("/courses", async (req, res) => {
-  const { name, description = null, duration } = req.body;
+  const { name, description = null, duration, teacherId } = req.body;
 
   if (!name || !duration) {
     return res.status(422).json({
@@ -30,6 +30,7 @@ router.post("/courses", async (req, res) => {
       name,
       description,
       duration,
+      fk_id_teacher: teacherId,
     },
   });
 
@@ -68,6 +69,26 @@ router.patch("/courses/:id", async (req, res) => {
   });
 
   return res.status(200).json(updatedCourse);
+});
+
+// teachers
+
+router.post("/teachers", async (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(422).json({
+      message: "Missing parameters, must be provided name.",
+    });
+  }
+
+  const createdTeacher = await prisma.teachers.create({
+    data: {
+      name,
+    },
+  });
+
+  return res.status(201).json(createdTeacher);
 });
 
 // server setup

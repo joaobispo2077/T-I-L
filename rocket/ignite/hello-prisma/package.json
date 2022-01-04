@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts",
+    "studio": "yarn prisma studio",
+    "migrate": "yarn prisma migrate dev"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
