@@ -48,5 +48,21 @@ router.get("/courses", async (req, res) => {
   return res.status(200).json(courses);
 });
 
+router.patch("/courses/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, description, duration } = req.body;
+
+  const updatedCourse = await prisma.courses.update({
+    where: { id },
+    data: {
+      name,
+      description,
+      duration,
+    },
+  });
+
+  return res.status(200).json(updatedCourse);
+});
+
 app.use(router);
 app.listen(3000, () => console.log("Server started on port 3000"));
