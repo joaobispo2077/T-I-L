@@ -2,13 +2,19 @@ import { PrismaClient } from "@prisma/client";
 
 import express, { Router } from "express";
 
+// prisma setup
+
 const prisma = new PrismaClient();
+
+// server config
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const router = Router();
+
+// courses
 
 router.post("/courses", async (req, res) => {
   const { name, description = null, duration } = req.body;
@@ -63,6 +69,8 @@ router.patch("/courses/:id", async (req, res) => {
 
   return res.status(200).json(updatedCourse);
 });
+
+// server setup
 
 app.use(router);
 app.listen(3000, () => console.log("Server started on port 3000"));
