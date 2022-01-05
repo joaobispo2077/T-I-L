@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Relation one-to-one
 model Courses {
   id            String   @id @default(uuid())
   name          String   @unique

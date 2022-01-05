@@ -40,14 +40,15 @@ router.post("/courses", async (req, res) => {
 router.get("/courses", async (req, res) => {
   const { offset = 0, limit = 10 } = req.query;
 
-  const paginate = {
+  const options = {
+    include: {
+      teacher: true,
+    },
     skip: Number(offset),
     take: Number(limit),
   };
 
-  const searchMany = limit ? paginate : undefined;
-
-  const courses = await prisma.courses.findMany(searchMany);
+  const courses = await prisma.courses.findMany(options);
 
   res.setHeader("X-Total-Count", courses.length);
   res.setHeader("Access-Control-Expose-Headers", "X-Total-Count");
