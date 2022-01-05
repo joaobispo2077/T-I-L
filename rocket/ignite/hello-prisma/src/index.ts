@@ -92,6 +92,45 @@ router.post("/teachers", async (req, res) => {
   return res.status(201).json(createdTeacher);
 });
 
+// authors
+
+router.post("/authors", async (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(422).json({
+      message: "Missing parameters, must be provided name.",
+    });
+  }
+
+  const createdAuthor = await prisma.authors.create({
+    data: {
+      name,
+    },
+  });
+
+  return res.status(201).json(createdAuthor);
+});
+
+router.post("/books", async (req, res) => {
+  const { name, authorId } = req.body;
+
+  if (!name || !authorId) {
+    return res.status(422).json({
+      message: "Missing parameters, must be provided name and authorId.",
+    });
+  }
+
+  const createdBook = await prisma.books.create({
+    data: {
+      name,
+      author_id: authorId,
+    },
+  });
+
+  return res.status(201).json(createdBook);
+});
+
 // server setup
 
 app.use(router);

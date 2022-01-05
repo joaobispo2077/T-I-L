@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "studio": "yarn prisma studio",
-    "migrate": "yarn prisma migrate dev"
+    "migrate": "yarn prisma migrate dev",
+    "prisma:format": "yarn prisma format"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
