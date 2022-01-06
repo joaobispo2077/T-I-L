@@ -72,6 +72,33 @@ router.patch("/courses/:id", async (req, res) => {
   return res.status(200).json(updatedCourse);
 });
 
+// modules
+
+router.post("/courses/:id/modules", async (req, res) => {
+  const { id } = req.params;
+  const { name, description = null } = req.body;
+
+  if (!name) {
+    return res.status(422).json({
+      message: "Missing parameters, must be provided name.",
+    });
+  }
+
+  const createdModule = await prisma.modules.create({
+    data: {
+      name,
+      description,
+      CoursesModules: {
+        create: {
+          fk_id_course: id,
+        },
+      },
+    },
+  });
+
+  return res.status(201).json(createdModule);
+});
+
 // teachers
 
 router.post("/teachers", async (req, res) => {
