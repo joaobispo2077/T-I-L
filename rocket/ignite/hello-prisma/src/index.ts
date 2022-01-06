@@ -88,15 +88,29 @@ router.post("/courses/:id/modules", async (req, res) => {
     data: {
       name,
       description,
-      CoursesModules: {
-        create: {
-          fk_id_course: id,
-        },
+      courses: {
+        connect: { id },
       },
     },
   });
 
   return res.status(201).json(createdModule);
+});
+
+router.get("/courses/:id/modules", async (req, res) => {
+  const { id } = req.params;
+
+  const courseModules = await prisma.coursesModules.findMany({
+    where: {
+      fk_id_course: id,
+    },
+    include: {
+      module: true,
+      course: false,
+    },
+  });
+
+  return res.json(courseModules);
 });
 
 // teachers
