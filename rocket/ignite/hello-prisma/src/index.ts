@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Courses, Prisma, PrismaClient } from "@prisma/client";
 
 import express, { Router } from "express";
 
@@ -49,6 +49,7 @@ router.get("/courses", async (req, res) => {
   };
 
   const courses = await prisma.courses.findMany(options);
+  // await prisma.$queryRaw<Courses>(Prisma.sql`SELECT * FROM courses`);
 
   res.setHeader("X-Total-Count", courses.length);
   res.setHeader("Access-Control-Expose-Headers", "X-Total-Count");
