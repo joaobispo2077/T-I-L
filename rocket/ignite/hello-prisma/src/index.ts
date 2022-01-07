@@ -113,6 +113,19 @@ router.get("/courses/:id/modules", async (req, res) => {
   return res.json(courseModules);
 });
 
+router.delete("/courses/:id/modules/:moduleId", async (req, res) => {
+  const { id, moduleId } = req.params;
+
+  await prisma.coursesModules.delete({
+    where: {
+      fk_id_course: id,
+      fk_id_module: moduleId,
+    },
+  });
+
+  return res.status(204);
+});
+
 // teachers
 
 router.post("/teachers", async (req, res) => {
