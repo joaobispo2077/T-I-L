@@ -11,7 +11,7 @@ yarn add -D @commitlint/cli @commitlint/config-conventional
 Create commit lint config file called `.commitlintrc.js`:
 
 ```bash
- echo 'module.exports = { extends: ['@commitlint/config-conventional'] };' > .commitlintrc.js
+ echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > .commitlintrc.js
 ```
 
 Install githooks tool:
@@ -26,6 +26,12 @@ Prepare commit lint hook:
 
 ```bash
 yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'
+```
+
+with npm:
+
+```bash
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
 Examples:

@@ -57,3 +57,7 @@ Finally, you can add the following to your package.json:
   }
 }
 ```
+
+Examples:
+
+- https://github.com/joaobispo2077/clean-notepad-api/commit/ac4253747ed064fd9e0af1a9d6b9d8823789fff7
