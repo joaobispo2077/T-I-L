@@ -5,19 +5,23 @@ const { readFile, writeFile } = require('fs');
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);
 
-const parseFilelineToArtefactList = line => {
+const parseFilelineToArtefactList = (line, index) => {
   const [url, commitHash] = line.split('#');
 
   const isAnArtefact = url && commitHash;
   if (!isAnArtefact) {
-    return line;
+    return line.trim();
   }
+  console.log(`processing an artefact: ${index} - ${url}`);
 
   const firstTencommitHashCharacters = commitHash ? commitHash.slice(0, 10) : '';
   const artefact = [url, firstTencommitHashCharacters].join('#');
 
-  return artefact;
+  return artefact.trim();
 }
+
+const isValidLine = line => Boolean(line) && line !== '\n'
+  && line.length > 0 && line !== '';
 
 const resolveOF = async () => {
   const rootDirectory = resolve(__dirname);
@@ -29,8 +33,12 @@ const resolveOF = async () => {
   console.info(`\n=== processing ${fileLines.length} lines ===\n`);
 
   const artefactList = fileLines.map(parseFilelineToArtefactList);
+  const filteredArtefactList = artefactList.filter(isValidLine);
 
-  const newFileData = artefactList.join('\n');
+  console.log(filteredArtefactList);
+  console.info(`\n=== filtered ${filteredArtefactList.length} lines ===\n`);
+
+  const newFileData = filteredArtefactList.join('\n');
 
   const targetFile = resolve(rootDirectory, '..', '..', 'data', 'of_resolved.txt');
   await writeFileAsync(targetFile, newFileData);
