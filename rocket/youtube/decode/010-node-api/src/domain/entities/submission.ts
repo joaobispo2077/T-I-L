@@ -1,4 +1,5 @@
 import { Entity } from '../../core/domain/Entity';
+import { MakePartial } from '../../utils/generics';
 
 type SubmissionProps = {
   challengeId: string;
@@ -11,7 +12,12 @@ export class Submission extends Entity<SubmissionProps> {
     super(props, id);
   }
 
-  public static create(props: SubmissionProps, id?: string) {
-    return new Submission(props, id);
+  public static create(
+    props: MakePartial<SubmissionProps, 'createdAt'>,
+    id?: string,
+  ) {
+    const createdAt = props.createdAt ?? new Date();
+
+    return new Submission({ ...props, createdAt }, id);
   }
 }
