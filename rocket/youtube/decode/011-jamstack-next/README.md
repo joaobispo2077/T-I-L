@@ -21,3 +21,43 @@ generate codegen with environment variables for graphql to use with types
   }
 }
 ```
+
+# setup TAILWIND
+
+install
+
+```bash
+yarn add tailwindcss postcss autoprefixer -D
+```
+
+initialize with
+
+```bash
+yarn tailwindcss init -p
+```
+
+you can use aditional plugins
+
+```bash
+yarn add @tailwindcss/forms @tailwindcss/typography -D
+```
+
+if u wanna use icons, you can install:
+
+```bash
+yarn add @heroicons/react
+```
+
+if u wanna use custom feats, you can install:
+
+```
+yarn add @headlessui/react
+```
+
+add in global.css file
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```

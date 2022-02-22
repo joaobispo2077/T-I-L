@@ -9,9 +9,12 @@ export default function Home() {
     }
   });
   return (
+    <div  className="text-3xl font-bold underline">
+
     <h1>
       {data?.page?.title}
     </h1>
+    </div>
   )
 }
 
