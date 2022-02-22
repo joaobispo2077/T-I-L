@@ -1,4 +1,7 @@
 import { GetServerSideProps } from "next";
+import { Features } from "../components/Features";
+import { Hero } from "../components/Hero";
+import { Pricing } from "../components/Pricing";
 import { PageDocument, usePageQuery } from "../generated/graphql"
 import { ssrCache, urqlClient } from "../lib/urql";
 
@@ -9,11 +12,12 @@ export default function Home() {
     }
   });
   return (
-    <div  className="text-3xl font-bold underline">
-
-    <h1>
-      {data?.page?.title}
-    </h1>
+    <div  >
+      <Hero  title={data?.page?.title} subtitle={
+        data?.page?.subtitle
+      }/>
+      <Features />
+      <Pricing />
     </div>
   )
 }
