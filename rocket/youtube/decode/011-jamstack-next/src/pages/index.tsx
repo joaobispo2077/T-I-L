@@ -11,8 +11,9 @@ export default function Home() {
       slug: "home",
     }
   });
+
   return (
-    <div  >
+    <div>
       <Hero  title={data?.page?.title} subtitle={
         data?.page?.subtitle
       }/>
