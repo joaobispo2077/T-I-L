@@ -23,7 +23,7 @@ const parseFilelineToArtefactList = (line, index) => {
 const isValidLine = line => Boolean(line) && line !== '\n'
   && line.length > 0 && line !== '';
 
-const resolveOF = async () => {
+const resolveOF = async (baseURL = "") => {
   const rootDirectory = resolve(__dirname);
   const sourceFile = resolve(rootDirectory, '..', '..', 'data', 'of.txt');
 
@@ -38,7 +38,8 @@ const resolveOF = async () => {
   console.log(filteredArtefactList);
   console.info(`\n=== filtered ${filteredArtefactList.length} lines ===\n`);
 
-  const newFileData = filteredArtefactList.join('\n');
+  const newFileData = filteredArtefactList.map(line => `${baseURL}${line}`)
+    .join('\n');
 
   const targetFile = resolve(rootDirectory, '..', '..', 'data', 'of_resolved.txt');
   await writeFileAsync(targetFile, newFileData);
