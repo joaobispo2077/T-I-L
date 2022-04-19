@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Formulario para entrada de dados</title>
+</head>
+
+<body>
+  <form name="cadastro_clientes" action"gravar_cliente.jsp" method="post">
+    <h2 align="center">Formulário de Cadastro</h2>
+    <p> Nome completo:<input name="txtNome" type="text" size="50" maxlenght="30"></p>
+    <p> Endereço: <input name="txtEndereco" type="text" size="50" maxlenght="50">
+      Numero: <input name="txtNumero" type="text" size="10" maxlenght="10"></p>
+    <p> Complemento: <input name="txtComplemento" type="text" size="20" maxlenght="20"></p>
+    <p> Bairo: <input name="txtBairro" type="text" size="20" maxlenght="20"></p>
+    <p> Estado: <input name="txtComplemento" type="text" size="2" maxlenght="2"></p>
+    <p> <input name="btnLimpar" type="reset" value="Limpar"></p>
+    <p> <input name="btnEnviar" type="submit" value="Enviar"></p>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert("Cadastro Realizado");
+    };
+
+    document
+      .querySelector("form[name='cadastro_clientes']")
+      .addEventListener("submit", handleSubmit);
+  </script>
+</body>
+
+</html>
