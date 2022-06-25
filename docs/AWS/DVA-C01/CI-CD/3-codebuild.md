@@ -40,6 +40,67 @@ File must be at the root of your code.
 - artifacts - what to upload to S3 (encrypted with KMS)
 - cache - files to cache (usually dependencies) to S3 for future build speed up
 
+```yml
+version: 0.2
+
+run-as: Linux-user-name
+
+env:
+  shell: shell-tag
+  variables:
+    key: "value"
+  parameter-store:
+    key: "value"
+  exported-variables:
+    - variable
+  secrets-manager:
+    key: secret-id:json-key:version-stage:version-id
+  git-credential-helper: no | yes
+
+proxy:
+  upload-artifacts: no | yes
+  logs: no | yes
+
+batch:
+  fast-fail: false | true
+  # build-list:
+  # build-matrix:
+  # build-graph:
+
+phases:
+  install:
+    run-as: Linux-user-name
+    on-failure: ABORT | CONTINUE
+    runtime-versions:
+      runtime: version
+    commands:
+      - command
+    finally:
+      - command
+  pre_build:
+    commands:
+      - command
+  build:
+    commands:
+      - command
+  post_build:
+      - command
+reports:
+  report-group-name-or-arn:
+    files:
+      - location
+      - location
+    base-directory: location
+    discard-paths: no | yes
+    file-format: report-format
+artifacts:
+  files:
+    - location
+cache:
+  paths:
+    - path
+
+```
 ## Local build
 
 - In case of need of deep troubleshooting beyond logs
@@ -57,7 +118,3 @@ File must be at the root of your code.
   - Security Group IDs
 - Then your build can access resources in your VPC (e.g RDS, ElastiCache, EC2, ALB...)
 - Use Cases: integrations tests, data query, internal load balancers
-
-- In case of need of deep troubleshooting beyond logs
-- You can run CodeBuild locally on your desktop (after installing Docker)
-- For this, leverage the CodeBuild Agent
