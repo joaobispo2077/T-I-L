@@ -49,7 +49,7 @@
     "koa-async-validator": "^0.4.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "mongodb": "^3.6.3",
     "pino": "^6.2.0",
     "pino-pretty": "^4.0.0",
