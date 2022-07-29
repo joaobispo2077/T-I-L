@@ -38,7 +38,8 @@ const resolveOF = async (baseURL = "") => {
   console.log(filteredArtefactList);
   console.info(`\n=== filtered ${filteredArtefactList.length} lines ===\n`);
 
-  const newFileData = filteredArtefactList.map(line => `${baseURL}${line}`)
+  const newFileData = filteredArtefactList
+    .map(line => `${baseURL}${line}`)
     .join('\n');
 
   const targetFile = resolve(rootDirectory, '..', '..', 'data', 'of_resolved.txt');
