@@ -95,4 +95,20 @@ class Consumer implements Runnable {
     }
 }
 
+public class Main {
+
+    public static void main(String[] args) {
+        Holder<String> holder = new Holder<String>(5);
+        Executor executor = Executors.newFixedThreadPool(5);
+
+        for (int i = 0; i < 3; i++) {
+            executor.execute(new Producer(i, holder));
+        }
+
+        for (int i = 0; i < 2; i++) {
+            executor.execute(new Consumer(holder));
+        }
+    }
+}
+
 // vi por aqui: https://stackoverflow.com/a/28862386/14364587
