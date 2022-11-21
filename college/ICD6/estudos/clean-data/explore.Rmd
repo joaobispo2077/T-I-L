@@ -1,0 +1,65 @@
+Explorar os dados
+
+```{r}
+dados = read.csv("Churn.csv", sep = ";", na.strings = "", stringsAsFactors=T)
+head(dados)
+summary(dados)
+```
+
+
+```{r}
+# Dar nomes corretos as colunas
+colnames(dados) = c("Id", "Score", "Estado", "Genero", "Idade", "Patrimonio", "Saldo", "Produtos", "TemCartCredito", "Ativo", "Salario", "Saiu")
+head(dados)
+```
+
+
+Explorar dados, colunas categóricas
+```{r}
+
+# Estados
+states_count = table(dados$Estado)
+barplot(states_count, main="Estado", xlab="Estado")
+
+# Generos
+genders_count = table(dados$Genero)
+barplot(genders_count, main="Genero", xlab="Genero")
+
+#barplot facilita identificar diferentes tipos de um dado categórico
+```
+
+Explorar colunas numéricas
+```{r}
+#Score
+summary(dados$Score)
+boxplot(dados$Score)
+hist(dados$Score) # distribuicao uniforme
+```
+
+```{r}
+#Idade
+summary(dados$Idade)
+boxplot(dados$Idade)
+hist(dados$Idade)
+```
+
+```{r}
+#Saldo
+summary(dados$Saldo)
+boxplot(dados$Saldo)
+hist(dados$Saldo)
+```
+
+```{r}
+#Salario
+summary(dados$Salario)
+boxplot(dados$Salario)
+boxplot(dados$Salario, outline = F)
+```
+
+Valores faltantes  -NAs
+
+```{r}
+# valores faltantes NAs
+dados[!complete.cases(dados),]
+```

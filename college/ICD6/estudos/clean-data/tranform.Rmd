@@ -1,0 +1,122 @@
+Tratar e transformar dados
+
+```{r}
+dados = read.csv("Churn.csv", sep = ";", na.strings = "", stringsAsFactors=T)
+head(dados)
+summary(dados)
+```
+
+
+```{r}
+# Dar nomes corretos as colunas
+colnames(dados) = c("Id", "Score", "Estado", "Genero", "Idade", "Patrimonio", "Saldo", "Produtos", "TemCartCredito", "Ativo", "Salario", "Saiu")
+head(dados)
+```
+
+Como substituir NAs em dados númericos - Salários
+```{r}
+# Normalmente em dados númericos os NAs são substituídos pela mediana desses valores e no caso de dados categóricos são substituídos pelo valor mais recorrente (moda).
+
+# ver resumo
+summary(dados$Salario)
+# ver mediana ignorando NA
+median(dados$Salario, na.rm = TRUE)
+# atribuir mediana nos campos NA
+dados[is.na(dados$Salario),]$Salario = median(dados$Salario, na.rm = TRUE)
+# buscar NAs em salário para checar se realmente foi removido
+dados[!complete.cases(dados$Salario)]
+```
+
+Padronização de dados dados categóricos - Gêneros
+```{r}
+# Visualizar valores únicos e resumo
+unique(dados$Genero)
+summary(dados$Genero)
+## transformar "F" e "Fem" em "Feminino"
+## transformar NAs, "M" em "Masculino" (moda)
+dados[is.na(dados$Genero) | dados$Genero == "M",]$Genero = "Masculino"
+dados[dados$Genero == "Fem" | dados$Genero == "F",]$Genero = "Feminino"
+# Visualizar resultados nos valores únicos e resumo
+unique(dados$Genero)
+summary(dados$Genero)
+# remover levels não utilizados (limpar 0)
+dados$Genero = factor(dados$Genero)
+# visualizar novamente
+summary(dados$Genero)
+```
+
+Padronização de dados númericos fora do domínio - Idade
+
+```{r}
+summary(dados$Idade)
+# fora do domínio, númerio - ver idades anormais
+dados[dados$Idade < 0 | dados$Idade > 110,]$Idade
+# checar idade NA
+dados[is.na(dados$Idade),]
+# opção, preencher com mediana
+median(dados$Idade)
+# subistuição pela mediana
+dados[dados$Idade < 0 | dados$Idade > 110,]$Idade = median(dados$Idade)
+
+# buscarmos novamente idades anormais
+dados[dados$Idade < 0 | dados$Idade > 110,]$Idade
+summary(dados$Idade)
+```
+
+Remoção de dados duplicados por ID - Id
+```{r}
+# buscar dados duplicados pelo ID
+dadosDuplicados = dados[duplicated(dados$Id),]
+dadosDuplicados
+# verificamos que o ID 81 está duplicado
+# VAMOS EXCLUIR PELO ID (não pelo índice, use ID)
+dados = dados[-c(82),]
+
+#buscamos a linha que estava duplicada
+dados[dados$Id == dadosDuplicados$Id ,]
+#verificamos novamente duplicados
+dadosDuplicados =  dados[duplicated(dados$Id),]
+dadosDuplicados
+```
+
+Remoção de estados fora do domínio, dados categóricos - Estado
+```{r}
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+# Visualizar Estados únicos  e resumo
+unique(dados$Estado)
+summary(dados$Estado)
+getmode(dados$Estado)
+# substituir valores fora do domínio pela moda que é RS nesse caso
+dados[!dados$Estado %in% c("RS", "SC", "PR"),]$Estado = "RS"
+summary(dados$Estado)
+# removemos fatore não usados
+dados$Estado = factor(dados$Estado)
+# Visualizar novamente Estados únicos  e resumo
+unique(dados$Estado)
+summary(dados$Estado)
+```
+
+Outliers
+
+```{r}
+# outliers, criando um parametro com desvio padrão
+desvioPadraoDoSalario = sd(dados$Salario, na.rm = TRUE)
+desvioPadraoDoSalario
+# desvio padrão representa o quão distante da média os dados estão
+# selecionando salários que sejam maior ou igual 2x o desvio padrão dos salários
+dados[dados$Salario >= 2 * desvioPadraoDoSalario,]$Salario
+# visualizando de outra forma, resultado semelhante mas sem os NA's
+boxplot(dados$Salario)
+boxplot(dados$Salario, outline = FALSE)
+salarioOutliers = boxplot(dados$Salario)$out
+salarioOutliers
+# atualizarmos os salários que estejam no filtro acima para a mediana
+median(dados$Salario)
+dados[dados$Salario >= 2 * desvioPadraoDoSalario,]$Salario = median(dados$Salario)
+# checamos se sairam os outliers
+dados[dados$Salario >= 2 * desvioPadraoDoSalario,]$Salario
+```

@@ -1,0 +1,49 @@
+
+
+Exemplo de atribuir valor a uma variável de tipo primitivo, pode ser usado tanto "=" quanto "<-"
+```{r}
+tipoNumero <- 8
+tipoBooleano <- TRUE
+tipoTexto <- "Texto"
+
+print(tipoTexto)
+```
+
+Exemplo de atribuir valor a uma variável lista, primeira posição do vetor é 1.
+```{r}
+lista <- c(1, 2, 3, 4, 5, 6)
+
+print(lista)
+print(lista[1])
+```
+
+if else
+
+```{r}
+ehVerdade <- FALSE
+
+if (ehVerdade) {
+  print("É verdade")
+} else {
+  print("Não é verdade")
+}
+
+resultado <- ifelse(ehVerdade, "É verdade", "Não é verdade")
+print(resultado)
+```
+
+Laços
+
+- while
+- for in
+
+Funções
+
+```{r}
+greetings <- function(text) {
+  print(text)
+}
+
+
+greetings("E aí, como vai você?")
+```

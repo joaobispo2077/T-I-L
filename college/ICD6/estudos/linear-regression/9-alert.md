@@ -1,0 +1,1 @@
+Só por que existe uma relação matemática entre duas variáveis, isso não significa que na realidade haja uma causa de uma variável na outra, pode ser um acaso. Para desvendar isso deve-se considerar o contexto.
