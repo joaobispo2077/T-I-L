@@ -104,3 +104,9 @@ operada unicamente por uma organização.
 - Nuvem pública (public cloud): a nuvem é disponibilizada publicamenteatravés do modelo pay-per-use.
 - Nuvem hibrida (hybrid cloud): a infraestrutura é uma composição de duas ou mais nuvens (privada, comunidade ou pública) que continuam a ser entidades únicas porém, conectadas através de tecnologia proprietária ou padronizada.
 – Nuvem comunidade (community cloud): fornece uma infraestrutura compartilhada por uma comunicade de organizações com interesses em comum.
+
+# DevOps
+
+- Criado em 2009 por Patrick Debois, o termo DevOps (desenvolvimento e
+operações) é uma extensão de ambientes de desenvolvimento ágil que visa
+aprimorar o processo de entrega de software como um todo
