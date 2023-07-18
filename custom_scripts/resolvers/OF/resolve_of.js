@@ -48,6 +48,7 @@ const resolveOF = async (baseURL = "") => {
   console.info("\n===output===\n");
   console.info(newFileData);
 
+  console.info(`\n\n=== outputed ${filteredArtefactList.length} lines ===\n`);
 }
 
 module.exports = {
