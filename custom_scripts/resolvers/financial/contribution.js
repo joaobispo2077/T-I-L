@@ -17,7 +17,7 @@ const stocksWithGrades = [
   },
   {
     ticker: 'BBDC3',
-    grade: 6,
+    grade: 5,
     type: 'stock_BR',
   },
   {
@@ -27,15 +27,25 @@ const stocksWithGrades = [
   },
   {
     ticker: 'IPCA+ 2029',
-    grade: 10,
+    grade: 9,
     type: 'bond_BR',
   },
   {
-    ticker: 'Tesouro Selic 2029',
+    ticker: 'Tesouro Selic 2026',
     grade: 10,
     type: 'bond_BR',
 
   },
+  // {
+  //   ticker: 'LCI 90 DIAS 113,55% CDI Inter',
+  //   grade: 8,
+  //   type: 'bond_BR',
+  // },
+  // {
+  //   ticker: 'CDB 100% CDI Inter',
+  //   grade: 9,
+  //   type: 'bond_BR',
+  // },
   {
     ticker: 'VOO',
     grade: 8,
