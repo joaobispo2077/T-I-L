@@ -127,7 +127,7 @@ async function bootstrap() {
   }, 0);
 
   const totalBrlToBeConverted = stockWithDollarsContribution.reduce((acc, stock) => {
-    if (stock.usd_contribution === '-') {
+    if (stock.usd_contribution !== '-') {
       acc += stock.contribution;
     }
 
