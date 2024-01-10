@@ -1,8 +1,8 @@
 const { convertCurrencyList } = require('./currency');
 
-const CONTRIBUTION = 12019 - 432.75;
+const CONTRIBUTION = 12019 - 432.75 - 6028.35;
 
-const blockedCategories = ['stock_BR', 'crypto', 'stocks_US', 'stock_BR', 'bond_BR'];
+const blockedCategories = ['stock_BR', 'crypto', 'stock_US', 'stock_BR'];
 
 const maxLimitByType = [
   {
@@ -130,11 +130,59 @@ const stocksWithGrades = [
     grade: 3,
     type: 'stock_US',
   },
-].filter(stock => !blockedCategories.includes(stock.type));
+];
 
 const calculateContribution = (stock, contribution, sumAllStockGrades) => {
   return (stock.grade * contribution) / sumAllStockGrades;
 }
+
+async function calculatePoundedContributionForStocksByAmount(stocksWithGrades, amount = 0) {
+  console.log('calculating pounded contribution for stocks by amount');
+  const sumAllStockGrades = stocksWithGrades.reduce((acc, stock) => acc + stock.grade, 0);
+
+  const stockWithContribution = stocksWithGrades.map(stock => ({
+    ...stock,
+    contribution: calculateContribution(stock, amount, sumAllStockGrades),
+  }));
+
+  const sortedStocksWithContribution = stockWithContribution.sort((a, b) => b.grade - a.grade);
+
+  console.info(`CONTRIB BY TICKER`);
+  console.table(sortedStocksWithContribution);
+  console.info(`amount to contrib: ${amount}`);
+
+  const stockWithDollarsContribution = await convertCurrencyList({
+    baseKey: 'contribution',
+    newProperty: 'usd_contribution',
+    baseCurrency: 'BRL',
+    targetCurrency: 'USD',
+    list: sortedStocksWithContribution,
+  });
+
+  const totalUsdContrib = stockWithDollarsContribution.reduce((acc, stock) => {
+    if (stock.usd_contribution !== '-') {
+      acc += stock.usd_contribution;
+    }
+
+    return acc;
+  }, 0);
+
+  const totalBrlToBeConverted = stockWithDollarsContribution.reduce((acc, stock) => {
+    if (stock.usd_contribution !== '-') {
+      acc += stock.contribution;
+    }
+
+    return acc;
+  }, 0);
+
+  console.info(`DOLLARS CONTRIB BY TICKER`);
+  console.table(stockWithDollarsContribution);
+  console.info(`total BRL to convert: ${totalBrlToBeConverted} BRL`);
+  console.info(`total USD contrib: ${totalUsdContrib} USD`);
+
+  return stockWithDollarsContribution;
+};
+
 
 async function bootstrapPoundedContributionByWallet() {
   const sumAllStockGrades = stocksWithGrades.reduce((acc, stock) => acc + stock.grade, 0);
@@ -194,53 +242,9 @@ async function bootstrapPoundedContributionByWallet() {
   console.info(`total USD contrib: ${totalUsdContrib} USD`);
 };
 
-async function calculatePoundedContributionForStocksByAmount(stocksWithGrades, amount = 0) {
-  console.log('calculating pounded contribution for stocks by amount');
-  const sumAllStockGrades = stocksWithGrades.reduce((acc, stock) => acc + stock.grade, 0);
 
-  const stockWithContribution = stocksWithGrades.map(stock => ({
-    ...stock,
-    contribution: calculateContribution(stock, amount, sumAllStockGrades),
-  }));
-
-  const sortedStocksWithContribution = stockWithContribution.sort((a, b) => b.grade - a.grade);
-
-  console.info(`CONTRIB BY TICKER`);
-  console.table(sortedStocksWithContribution);
-  console.info(`amount to contrib: ${amount}`);
-
-  const stockWithDollarsContribution = await convertCurrencyList({
-    baseKey: 'contribution',
-    newProperty: 'usd_contribution',
-    baseCurrency: 'BRL',
-    targetCurrency: 'USD',
-    list: sortedStocksWithContribution,
-  });
-
-  const totalUsdContrib = stockWithDollarsContribution.reduce((acc, stock) => {
-    if (stock.usd_contribution !== '-') {
-      acc += stock.usd_contribution;
-    }
-
-    return acc;
-  }, 0);
-
-  const totalBrlToBeConverted = stockWithDollarsContribution.reduce((acc, stock) => {
-    if (stock.usd_contribution !== '-') {
-      acc += stock.contribution;
-    }
-
-    return acc;
-  }, 0);
-
-  console.info(`DOLLARS CONTRIB BY TICKER`);
-  console.table(stockWithDollarsContribution);
-  console.info(`total BRL to convert: ${totalBrlToBeConverted} BRL`);
-  console.info(`total USD contrib: ${totalUsdContrib} USD`);
-};
-
-async function bootstrapPoundedContributionByCategory() {
-  const categoryGrades = stocksWithGrades.reduce((acc, stock) => {
+async function bootstrapPoundedContributionByCategory(stocksWithGrades, maxLimitByType, CONTRIBUTION) {
+  const allStockGradesByCategory = stocksWithGrades.reduce((acc, stock) => {
     const { type, grade } = stock;
 
     if (!acc[type]) {
@@ -262,7 +266,7 @@ async function bootstrapPoundedContributionByCategory() {
     return maxLimit.limit;
   };
 
-  const categoryWithSumAllGradesAndContribLimit = Object.entries(categoryGrades).reduce((acc, [category, grades]) => {
+  const categoriesWithBaseDetaill = Object.entries(allStockGradesByCategory).reduce((acc, [category, grades]) => {
     const sumAllGrades = grades.reduce((acc, grade) => acc + grade, 0);
     const contributionLimit = getContributionLimitByCategory(category);
 
@@ -274,31 +278,89 @@ async function bootstrapPoundedContributionByCategory() {
     return acc;
   }, []);
 
-  const sumAllCategoryGrades = categoryWithSumAllGradesAndContribLimit.reduce((acc, category) => {
+  const sumAllCategoryGrades = categoriesWithBaseDetaill.reduce((acc, category) => {
     acc += category.categoryGrade;
     return acc;
   }, 0);
 
 
-  const contributionPerCategory = categoryWithSumAllGradesAndContribLimit.map(category => ({
+  const categoriesWithStock = categoriesWithBaseDetaill.map(category => ({
     ...category,
     contribution: calculateContribution({ grade: category.categoryGrade }, CONTRIBUTION, sumAllCategoryGrades),
+    stocks: stocksWithGrades.filter(stock => stock.type === category.category) || [],
   }));
-  console.log(sumAllCategoryGrades);
-  console.log(contributionPerCategory);
-  // const getPoundedGradeByCategories = () => {
 
-  // }
+  console.log(`sum grade all category: ${sumAllCategoryGrades}`);
+  console.table(categoriesWithStock);
+  const totalAmountByCategory = categoriesWithStock.reduce((acc, category) => {
+    const { category: categoryKey, contribution, contributionLimit } = category;
+
+    if (!acc[categoryKey]) {
+      acc[categoryKey] = 0;
+    }
+
+    acc[categoryKey] += Math.min(contribution, contributionLimit);
+    return acc;
+  }, {});
+  console.table(totalAmountByCategory);
+  const categoriesWithstockPoundedContribByMinAmount = await Promise.all(categoriesWithStock.map(async category => {
+    const stocksContrib = await calculatePoundedContributionForStocksByAmount(
+      category.stocks,
+      Math.min(category.contribution, category.contributionLimit)
+    );
+
+    const categoryWithStockContrib = {
+      ...category,
+      stocksContrib
+    }
+    return categoryWithStockContrib;
+  }
+  ));
+
+  categoriesWithstockPoundedContribByMinAmount.forEach(category => {
+    console.table(category.stocksContrib);
+
+    const totalAmount = category.stocksContrib.reduce((acc, stock) => {
+      if (stock.usd_contribution !== '-') {
+        acc += stock.contribution;
+      }
+
+      return acc;
+    }, 0);
+    console.log(`total contrib: ${totalAmount} in ${category.category}`);
+  });
+  console.log(`sum grade all category: ${sumAllCategoryGrades}`);
+  console.table(categoriesWithStock);
+  console.table(totalAmountByCategory);
+  const amountUsed = Object.values(totalAmountByCategory).reduce((acc, category) => {
+    acc += category;
+    return acc;
+  }, 0);
+  console.log(`amount used: ${amountUsed}`);
+  // console.table(categoriesWithstockPoundedContribByMinAmount);
 }
 
 
-// bootstrapPoundedContributionByCategory();
 
 
 async function bootstrap() {
-  await bootstrapPoundedContributionByWallet();
-  console.log('next one');
-  await calculatePoundedContributionForStocksByAmount(stocksWithGrades, CONTRIBUTION);
+  // run this when want to avoid blocked types
+  // await bootstrapPoundedContributionByWallet();
+  // console.log('next one');
+
+  // run this when the wallet is balanced with all stocks except blocked ones
+  // await calculatePoundedContributionForStocksByAmount(
+  //   stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type))
+  //   , CONTRIBUTION
+  // );
+
+  // fill contrib limits according the spreadsheet and run this when need to balance the wallet
+  bootstrapPoundedContributionByCategory(
+    stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type)),
+    maxLimitByType,
+    CONTRIBUTION
+  );
+
 }
 
 bootstrap();
