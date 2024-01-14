@@ -1,29 +1,37 @@
 const { convertCurrencyList } = require('./currency');
 
-const CONTRIBUTION = 12019 - 432.75 - 6028.35;
+const CONTRIBUTION = 12019;
 
-const blockedCategories = ['stock_BR', 'crypto', 'stock_US', 'stock_BR'];
-
+const blockedCategories = ['stock_US_ETF_REITS', 'crypto'];
+// const blockedTickers = ["MXRF11", "HGLG11"]; # TODO: add a filtering on ticker names that you already reached the amount limit
 const maxLimitByType = [
   {
     type: 'bond_BR',
-    limit: 432.75
+    limit: 1185
   },
   {
     type: 'stock_US',
-    limit: 1074.81
+    limit: 1101.89
   },
+  // {
+  //   type: 'stock_US_ETF_REITS',
+  //   limit: 1032.04
+  // },
   {
-    type: 'stock_US_ETF_REITS',
-    limit: 1032.04
-  },
-  {
-    limit: 6668.38,
+    limit: 5391.60,
     type: 'stock_US_ETF',
+  },
+  {
+    limit: 476.87,
+    type: 'stock_BR',
+  },
+  {
+    limit: 945.27,
+    type: 'reits_BR',
   },
 ];
 
-const stocksWithGrades = [
+const stocksBR = [
   {
     ticker: 'ITSA4',
     grade: 9,
@@ -36,7 +44,7 @@ const stocksWithGrades = [
   },
   {
     ticker: 'BBDC3',
-    grade: 5,
+    grade: 6,
     type: 'stock_BR',
   },
   {
@@ -44,16 +52,13 @@ const stocksWithGrades = [
     grade: 6,
     type: 'stock_BR',
   },
+];
+
+const bondBR = [
   {
     ticker: 'IPCA+ 2029',
     grade: 9,
     type: 'bond_BR',
-  },
-  {
-    ticker: 'Tesouro Selic 2026',
-    grade: 10,
-    type: 'bond_BR',
-
   },
   // {
   //   ticker: 'LCI 90 DIAS 113,55% CDI Inter',
@@ -66,23 +71,32 @@ const stocksWithGrades = [
   //   type: 'bond_BR',
   // },
   {
+    ticker: 'Tesouro Selic 2026',
+    grade: 10,
+    type: 'bond_BR',
+
+  }
+];
+
+const stocksUsEtf = [
+  {
     ticker: 'VOO',
-    grade: 8,
+    grade: 9,
     type: 'stock_US_ETF',
   },
   {
     ticker: 'SCHD',
-    grade: 8,
+    grade: 9,
     type: 'stock_US_ETF',
   },
   {
     ticker: 'VEA',
-    grade: 2,
+    grade: 4,
     type: 'stock_US_ETF',
   },
   {
     ticker: 'EMB',
-    grade: 2,
+    grade: 4,
     type: 'stock_US_ETF',
   },
   {
@@ -95,6 +109,9 @@ const stocksWithGrades = [
     grade: 1,
     type: 'stock_US_ETF',
   },
+];
+
+const stocksUsEtfReits = [
   {
     ticker: 'SCHH',
     grade: 8,
@@ -102,12 +119,15 @@ const stocksWithGrades = [
   },
   {
     ticker: 'VNQI',
-    grade: 1,
+    grade: 2,
     type: 'stock_US_ETF_REITS',
   },
+];
+
+const stocksUS = [
   {
     ticker: 'AAPL',
-    grade: 9,
+    grade: 10,
     type: 'stock_US',
   },
   {
@@ -130,6 +150,43 @@ const stocksWithGrades = [
     grade: 3,
     type: 'stock_US',
   },
+];
+
+const reitsBR = [
+  {
+    ticker: 'VISC11',
+    grade: 7,
+    type: 'reits_BR',
+  },
+  {
+    ticker: 'BCFF11',
+    grade: 7,
+    type: 'reits_BR',
+  },
+  {
+    ticker: 'SDIL11',
+    grade: 6,
+    type: 'reits_BR',
+  },
+  {
+    ticker: 'MXRF11',
+    grade: 3,
+    type: 'reits_BR',
+  },
+  {
+    ticker: 'HGLG11',
+    grade: 3,
+    type: 'reits_BR',
+  },
+];
+
+const stocksWithGrades = [
+  ...stocksBR,
+  ...bondBR,
+  ...stocksUsEtf,
+  ...stocksUsEtfReits,
+  ...stocksUS,
+  ...reitsBR
 ];
 
 const calculateContribution = (stock, contribution, sumAllStockGrades) => {
@@ -175,8 +232,14 @@ async function calculatePoundedContributionForStocksByAmount(stocksWithGrades, a
     return acc;
   }, 0);
 
+  const usedAmount = stockWithDollarsContribution.reduce((acc, stock) => {
+    return acc + stock.contribution;
+  }, 0);
+
   console.info(`DOLLARS CONTRIB BY TICKER`);
   console.table(stockWithDollarsContribution);
+  console.log(`Proposed contribution: ${CONTRIBUTION}`);
+  console.log(`Used amount: ${usedAmount}`);
   console.info(`total BRL to convert: ${totalBrlToBeConverted} BRL`);
   console.info(`total USD contrib: ${totalUsdContrib} USD`);
 
@@ -291,6 +354,7 @@ async function bootstrapPoundedContributionByCategory(stocksWithGrades, maxLimit
   }));
 
   console.log(`sum grade all category: ${sumAllCategoryGrades}`);
+  console.table("categoriesWithStock");
   console.table(categoriesWithStock);
   const totalAmountByCategory = categoriesWithStock.reduce((acc, category) => {
     const { category: categoryKey, contribution, contributionLimit } = category;
@@ -304,15 +368,19 @@ async function bootstrapPoundedContributionByCategory(stocksWithGrades, maxLimit
   }, {});
   console.table(totalAmountByCategory);
   const categoriesWithstockPoundedContribByMinAmount = await Promise.all(categoriesWithStock.map(async category => {
+    console.log(`calculating pounded contrib for ${category.category}`);
+    console.log(`using amount: ${totalAmountByCategory[category.category]}`);
+
     const stocksContrib = await calculatePoundedContributionForStocksByAmount(
       category.stocks,
-      Math.min(category.contribution, category.contributionLimit)
+      totalAmountByCategory[category.category]
     );
 
     const categoryWithStockContrib = {
       ...category,
       stocksContrib
-    }
+    };
+
     return categoryWithStockContrib;
   }
   ));
@@ -321,9 +389,7 @@ async function bootstrapPoundedContributionByCategory(stocksWithGrades, maxLimit
     console.table(category.stocksContrib);
 
     const totalAmount = category.stocksContrib.reduce((acc, stock) => {
-      if (stock.usd_contribution !== '-') {
-        acc += stock.contribution;
-      }
+      acc += stock.contribution;
 
       return acc;
     }, 0);
@@ -338,7 +404,7 @@ async function bootstrapPoundedContributionByCategory(stocksWithGrades, maxLimit
   }, 0);
   console.log(`amount used: ${amountUsed}`);
   // console.table(categoriesWithstockPoundedContribByMinAmount);
-}
+};
 
 
 
