@@ -12,3 +12,4 @@ const slugfy = (text) => {
 }
 
 console.info(slugfy("The effects of cohesion and coupling on a software project"));
+console.info(slugfy("Referências"));
