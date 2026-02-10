@@ -1,6 +1,6 @@
 const { convertCurrencyList } = require('./currency');
 
-const CONTRIBUTION = 12019;
+const CONTRIBUTION = 12019 - 6183.53;
 
 const blockedCategories = ['stock_US_ETF_REITS', 'crypto'];
 // const blockedTickers = ["MXRF11", "HGLG11"]; # TODO: add a filtering on ticker names that you already reached the amount limit
@@ -34,6 +34,11 @@ const maxLimitByType = [
 const stocksBR = [
   {
     ticker: 'ITSA4',
+    grade: 9,
+    type: 'stock_BR',
+  },
+  {
+    ticker: 'WEGE3',
     grade: 9,
     type: 'stock_BR',
   },
@@ -415,17 +420,17 @@ async function bootstrap() {
   // console.log('next one');
 
   // run this when the wallet is balanced with all stocks except blocked ones
-  // await calculatePoundedContributionForStocksByAmount(
-  //   stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type))
-  //   , CONTRIBUTION
-  // );
+  await calculatePoundedContributionForStocksByAmount(
+    stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type))
+    , CONTRIBUTION
+  );
 
   // fill contrib limits according the spreadsheet and run this when need to balance the wallet
-  bootstrapPoundedContributionByCategory(
-    stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type)),
-    maxLimitByType,
-    CONTRIBUTION
-  );
+  // bootstrapPoundedContributionByCategory(
+  //   stocksWithGrades.filter(stock => !blockedCategories.includes(stock.type)),
+  //   maxLimitByType,
+  //   CONTRIBUTION
+  // );
 
 }
 
