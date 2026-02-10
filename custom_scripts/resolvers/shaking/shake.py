@@ -11,5 +11,5 @@ def shake_mouse(duration=5, radius=10):
             pyautogui.moveRel(x, y)
             time.sleep(0.01)
 
-# Shake the mouse for 5 seconds
+# Shake the mouse for x seconds
 shake_mouse(duration=60 * 60)
