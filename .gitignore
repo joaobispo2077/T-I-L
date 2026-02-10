@@ -1,3 +1,4 @@
+serverless-ar.md
 custom_scripts/resolvers/**/*.txt
 # C
 *.exe
