@@ -36,7 +36,7 @@
     "eslint-watch": "^7.0.0",
     "faker": "^5.1.0",
     "link-module-alias": "^1.2.0",
-    "mocha": "^8.2.1",
+    "mocha": "^8.4.0",
     "nodemon": "^2.0.6",
     "nyc": "^15.1.0",
     "sinon": "^9.2.1",
